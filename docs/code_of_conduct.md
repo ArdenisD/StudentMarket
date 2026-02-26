@@ -82,10 +82,10 @@ For answers to common questions about this code of conduct, see the FAQ at [http
 [Mozilla CoC]: https://github.com/mozilla/diversity
 [FAQ]: https://www.contributor-covenant.org/faq
 [translations]: https://www.contributor-covenant.org/translations
-[Evan's Signature](docs/signatures/evansig.png)
-[Josh's Signature](docs/signatures/joshsig.png)
-[Ardenis' Signature](docs/signatures/ardenissig.png)
-[Zachary's Signature](docs/signatures/zacharysig.png)
+[Evan's Signature](signatures/evansig.png)
+[Josh's Signature](signatures/joshsig.png)
+[Ardenis' Signature](signatures/ardenissig.png)
+[Zachary's Signature](signatures/zacharysig.png)
 
 
 
