@@ -1,4 +1,3 @@
-
 # Contributor Covenant Code of Conduct
 
 ## Our Pledge
@@ -24,6 +23,14 @@ Examples of unacceptable behavior include:
 * Public or private harassment
 * Publishing others' private information, such as a physical or email address, without their explicit permission
 * Other conduct which could reasonably be considered inappropriate in a professional setting
+
+Standards for group work: 
+* No distracted use use technology (e.g. phones away) during all team meetings.
+* Decisions will be made by majority consensus.
+* Attendance is mandatory during all meeting. Excuses include illness or other legitimate documented excuse. 
+* Assignments will be created through discussion of app ideas in group meetings; Group members will volunteer for assignments before the end of group meetings; Unassigned work defaults to the person with the least work or in the case of equal assignments a [wheel of names](https://wheelofnames.com/) will decide. 
+* Communication will be done through an iMessage group chat. 
+* We will meet during project sessions and schedule other meetings as needed.
 
 ## Enforcement Responsibilities
 
