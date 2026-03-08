@@ -172,6 +172,8 @@ class _SignUp1WidgetState extends State<SignUp1Widget> {
                                   final selectedMedia =
                                       await selectMediaWithSourceBottomSheet(
                                     context: context,
+                                    maxWidth: 200.00,
+                                    maxHeight: 200.00,
                                     allowPhoto: true,
                                   );
                                   if (selectedMedia != null &&
