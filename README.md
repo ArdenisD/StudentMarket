@@ -1,9 +1,7 @@
 # StudentMarket
 
-## Code of Conduct
+A new Flutter project.
 
-This project adheres to the Contributor Covenant Code of Conduct.
+## Getting Started
 
-[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](docs/code_of_conduct.md)
-
-For more details, see [code_of_conduct.md](docs/code_of_conduct.md).
+FlutterFlow projects are built to run on the Flutter _stable_ release.
