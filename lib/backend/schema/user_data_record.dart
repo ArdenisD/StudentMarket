@@ -20,11 +20,6 @@ class UserDataRecord extends FirestoreRecord {
   String get email => _email ?? '';
   bool hasEmail() => _email != null;
 
-  // "photo_url" field.
-  String? _photoUrl;
-  String get photoUrl => _photoUrl ?? '';
-  bool hasPhotoUrl() => _photoUrl != null;
-
   // "created_time" field.
   DateTime? _createdTime;
   DateTime? get createdTime => _createdTime;
@@ -70,9 +65,13 @@ class UserDataRecord extends FirestoreRecord {
   String get phoneNumber => _phoneNumber ?? '';
   bool hasPhoneNumber() => _phoneNumber != null;
 
+  // "photo_url" field.
+  String? _photoUrl;
+  String get photoUrl => _photoUrl ?? '';
+  bool hasPhotoUrl() => _photoUrl != null;
+
   void _initializeFields() {
     _email = snapshotData['email'] as String?;
-    _photoUrl = snapshotData['photo_url'] as String?;
     _createdTime = snapshotData['created_time'] as DateTime?;
     _userName = snapshotData['user_name'] as String?;
     _univsersity = snapshotData['univsersity'] as String?;
@@ -82,6 +81,7 @@ class UserDataRecord extends FirestoreRecord {
     _displayName = snapshotData['display_name'] as String?;
     _uid = snapshotData['uid'] as String?;
     _phoneNumber = snapshotData['phone_number'] as String?;
+    _photoUrl = snapshotData['photo_url'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -120,7 +120,6 @@ class UserDataRecord extends FirestoreRecord {
 
 Map<String, dynamic> createUserDataRecordData({
   String? email,
-  String? photoUrl,
   DateTime? createdTime,
   String? userName,
   String? univsersity,
@@ -130,11 +129,11 @@ Map<String, dynamic> createUserDataRecordData({
   String? displayName,
   String? uid,
   String? phoneNumber,
+  String? photoUrl,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
       'email': email,
-      'photo_url': photoUrl,
       'created_time': createdTime,
       'user_name': userName,
       'univsersity': univsersity,
@@ -144,6 +143,7 @@ Map<String, dynamic> createUserDataRecordData({
       'display_name': displayName,
       'uid': uid,
       'phone_number': phoneNumber,
+      'photo_url': photoUrl,
     }.withoutNulls,
   );
 
@@ -156,7 +156,6 @@ class UserDataRecordDocumentEquality implements Equality<UserDataRecord> {
   @override
   bool equals(UserDataRecord? e1, UserDataRecord? e2) {
     return e1?.email == e2?.email &&
-        e1?.photoUrl == e2?.photoUrl &&
         e1?.createdTime == e2?.createdTime &&
         e1?.userName == e2?.userName &&
         e1?.univsersity == e2?.univsersity &&
@@ -165,13 +164,13 @@ class UserDataRecordDocumentEquality implements Equality<UserDataRecord> {
         e1?.agreedTerms == e2?.agreedTerms &&
         e1?.displayName == e2?.displayName &&
         e1?.uid == e2?.uid &&
-        e1?.phoneNumber == e2?.phoneNumber;
+        e1?.phoneNumber == e2?.phoneNumber &&
+        e1?.photoUrl == e2?.photoUrl;
   }
 
   @override
   int hash(UserDataRecord? e) => const ListEquality().hash([
         e?.email,
-        e?.photoUrl,
         e?.createdTime,
         e?.userName,
         e?.univsersity,
@@ -180,7 +179,8 @@ class UserDataRecordDocumentEquality implements Equality<UserDataRecord> {
         e?.agreedTerms,
         e?.displayName,
         e?.uid,
-        e?.phoneNumber
+        e?.phoneNumber,
+        e?.photoUrl
       ]);
 
   @override

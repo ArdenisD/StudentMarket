@@ -142,18 +142,19 @@ class _SignUp1WidgetState extends State<SignUp1Widget> {
                         height: 100.0,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
+                          border: Border.all(
+                            color: FlutterFlowTheme.of(context).primaryText,
+                            width: 2.0,
+                          ),
                         ),
                         child: Stack(
                           children: [
-                            AuthUserStreamWidget(
-                              builder: (context) => ClipRRect(
-                                borderRadius: BorderRadius.circular(100.0),
-                                child: Image.network(
-                                  currentUserPhoto,
-                                  width: 200.0,
-                                  height: 200.0,
-                                  fit: BoxFit.contain,
-                                ),
+                            Align(
+                              alignment: AlignmentDirectional(0.0, 0.0),
+                              child: Icon(
+                                Icons.person,
+                                color: FlutterFlowTheme.of(context).primaryText,
+                                size: 80.0,
                               ),
                             ),
                             Align(

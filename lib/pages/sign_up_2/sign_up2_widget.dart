@@ -217,7 +217,9 @@ class _SignUp2WidgetState extends State<SignUp2Widget> {
                           FlutterFlowDropDown<String>(
                             controller: _model.dropDownValueController1 ??=
                                 FormFieldController<String>(null),
-                            options: ['Option 1', 'Option 2', 'Option 3'],
+                            options: UnivsersityNamesCall.universityName(
+                              (_model.apiResult0ly?.jsonBody ?? ''),
+                            )!,
                             onChanged: (val) =>
                                 safeSetState(() => _model.dropDownValue1 = val),
                             width: 300.0,
@@ -583,7 +585,7 @@ class _SignUp2WidgetState extends State<SignUp2Widget> {
                                               .primaryText,
                                     ),
                                     child: Checkbox(
-                                      value: _model.checkboxValue ??= true,
+                                      value: _model.checkboxValue ??= false,
                                       onChanged: (newValue) async {
                                         safeSetState(() =>
                                             _model.checkboxValue = newValue!);

@@ -13,7 +13,7 @@ class UnivsersityNamesCall {
     return ApiManager.instance.makeApiCall(
       callName: 'univsersityNames',
       apiUrl:
-          'http://universities.hipolabs.com/search?name=&country=United+States&limit=500',
+          'http://universities.hipolabs.com/search?name=rhode&country=United+States&limit=500',
       callType: ApiCallType.GET,
       headers: {},
       params: {},

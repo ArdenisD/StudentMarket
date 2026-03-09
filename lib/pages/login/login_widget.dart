@@ -1,3 +1,4 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -28,11 +29,11 @@ class _LoginWidgetState extends State<LoginWidget> {
     super.initState();
     _model = createModel(context, () => LoginModel());
 
-    _model.textFieldTextController ??= TextEditingController();
-    _model.textFieldFocusNode1 ??= FocusNode();
+    _model.uniEmailTextController ??= TextEditingController();
+    _model.uniEmailFocusNode ??= FocusNode();
 
-    _model.textController2 ??= TextEditingController();
-    _model.textFieldFocusNode2 ??= FocusNode();
+    _model.passTextController ??= TextEditingController();
+    _model.passFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
@@ -158,8 +159,8 @@ class _LoginWidgetState extends State<LoginWidget> {
                       Container(
                         width: 300.0,
                         child: TextFormField(
-                          controller: _model.textFieldTextController,
-                          focusNode: _model.textFieldFocusNode1,
+                          controller: _model.uniEmailTextController,
+                          focusNode: _model.uniEmailFocusNode,
                           autofocus: false,
                           enabled: true,
                           textInputAction: TextInputAction.next,
@@ -261,7 +262,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                               null,
                           cursorColor: FlutterFlowTheme.of(context).primaryText,
                           enableInteractiveSelection: true,
-                          validator: _model.textFieldTextControllerValidator
+                          validator: _model.uniEmailTextControllerValidator
                               .asValidator(context),
                         ),
                       ),
@@ -293,12 +294,12 @@ class _LoginWidgetState extends State<LoginWidget> {
                       Container(
                         width: 300.0,
                         child: TextFormField(
-                          controller: _model.textController2,
-                          focusNode: _model.textFieldFocusNode2,
+                          controller: _model.passTextController,
+                          focusNode: _model.passFocusNode,
                           autofocus: false,
                           enabled: true,
                           textInputAction: TextInputAction.done,
-                          obscureText: !_model.passwordVisibility,
+                          obscureText: !_model.passVisibility,
                           decoration: InputDecoration(
                             isDense: true,
                             labelStyle: FlutterFlowTheme.of(context)
@@ -369,12 +370,12 @@ class _LoginWidgetState extends State<LoginWidget> {
                             contentPadding: EdgeInsets.all(24.0),
                             suffixIcon: InkWell(
                               onTap: () async {
-                                safeSetState(() => _model.passwordVisibility =
-                                    !_model.passwordVisibility);
+                                safeSetState(() => _model.passVisibility =
+                                    !_model.passVisibility);
                               },
                               focusNode: FocusNode(skipTraversal: true),
                               child: Icon(
-                                _model.passwordVisibility
+                                _model.passVisibility
                                     ? Icons.visibility_outlined
                                     : Icons.visibility_off_outlined,
                                 size: 22,
@@ -408,7 +409,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                               null,
                           cursorColor: FlutterFlowTheme.of(context).primaryText,
                           enableInteractiveSelection: true,
-                          validator: _model.textController2Validator
+                          validator: _model.passTextControllerValidator
                               .asValidator(context),
                         ),
                       ),
@@ -435,8 +436,28 @@ class _LoginWidgetState extends State<LoginWidget> {
                     ].divide(SizedBox(height: 4.0)),
                   ),
                   FFButtonWidget(
-                    onPressed: () {
-                      print('signInButton pressed ...');
+                    onPressed: () async {
+                      GoRouter.of(context).prepareAuthEvent();
+
+                      final user = await authManager.signInWithEmail(
+                        context,
+                        _model.uniEmailTextController.text,
+                        _model.passTextController.text,
+                      );
+                      if (user == null) {
+                        return;
+                      }
+
+                      context.goNamedAuth(
+                        HomeWidget.routeName,
+                        context.mounted,
+                        extra: <String, dynamic>{
+                          '__transition_info__': TransitionInfo(
+                            hasTransition: true,
+                            transitionType: PageTransitionType.rightToLeft,
+                          ),
+                        },
+                      );
                     },
                     text: 'Login',
                     options: FFButtonOptions(
