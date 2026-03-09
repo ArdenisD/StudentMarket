@@ -2,24 +2,48 @@
 
 ## Observation 1
 **Observation Statement:**  
-[Insert your observation here]
+[Team Member 1’s observation]
 
 **Supporting Data:**  
-[Insert any supporting numbers, quotes, or survey responses]
+[Data / survey responses]
 
 **Team Action (if any):**  
-[What action will the team take based on this observation]
+[Action the team might take]
 
 ---
 
 ## Observation 2
 **Observation Statement:**  
-[Insert your observation here]
+[Team Member 2’s observation]
 
 **Supporting Data:**  
-[Insert any supporting numbers, quotes, or survey responses]
+[Data / survey responses]
 
 **Team Action (if any):**  
-[What action will the team take based on this observation]
+[Action the team might take]
+
+---
+
+## Observation 3
+**Observation Statement:**  
+[Team Member 3’s observation]
+
+**Supporting Data:**  
+[Data / survey responses]
+
+**Team Action (if any):**  
+[Action the team might take]
+
+---
+
+## Observation 4
+**Observation Statement:**  
+[Team Member 4’s observation]
+
+**Supporting Data:**  
+[Data / survey responses]
+
+**Team Action (if any):**  
+[Action the team might take]
 
 ---
