@@ -2,13 +2,13 @@
 
 ## Observation 1
 **Observation Statement:**  
-[Team Member 1’s observation]
+Users mentioned that one of their biggest frustrations included scammers and also reported that the condition of some items they bought was not honest
 
 **Supporting Data:**  
-[Data / survey responses]
+Almost 50% of the feedback we received include mentions of scammers and poor conditions that were not listed on the apps they were using to buy those products/items
 
 **Team Action (if any):**  
-[Action the team might take]
+Implement a .edu colelge verificaiton to make sure of no scams and also potentially add a way to report suspicious posts or community guidelines to make sure users specify 
 
 ---
 
