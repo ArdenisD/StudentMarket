@@ -26,13 +26,13 @@
 
 ## Observation 3
 **Observation Statement:**  
-[Team Member 3’s observation]
+Students show a strong preference for location/deal-oriented branding over generic marketplace naming.
 
 **Supporting Data:**  
-[Data / survey responses]
+In a 35-response focus group survey asking "What is your favorite name for this app?", DormDeals received the highest vote share at 42.9%, nearly doubling the second place option. StudentMarket came in second at 20%, followed by QuadMarket at 17.1%, CampusMarket at 14.3%, and CollegeCycle at approximately 5.7%.
 
 **Team Action (if any):**  
-[Action the team might take]
+Strongly consider adopting DormDeals as the app name, as it resonates most with the target demographic. The name implies both a campus-specific context ("Dorm") and value-driven transactions ("Deals"), which aligns with our core value proposition. Further validate with a larger sample before finalizing branding.
 
 ---
 
