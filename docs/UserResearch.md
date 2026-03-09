@@ -14,13 +14,13 @@
 
 ## Observation 2
 **Observation Statement:**  
-[Team Member 2’s observation]
+[Most users have either used Facebook Marketplace and Ebay]
 
 **Supporting Data:**  
-[Data / survey responses]
+[25.7% said they use e bay & 42.9% for Facebook Marketplace]
 
 **Team Action (if any):**  
-[Action the team might take]
+[Take more inspiration from these platforms in order to conform better to our user ]
 
 ---
 
