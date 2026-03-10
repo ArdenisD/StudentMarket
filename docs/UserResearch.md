@@ -38,12 +38,10 @@ Strongly consider adopting DormDeals as the app name, as it resonates most with 
 
 ## Observation 4
 **Observation Statement:**  
-[Team Member 4’s observation]
+Many users conveyed they would be more likely to use the app if it's exclusively for buying/selling within your campus community.
 
 **Supporting Data:**  
-[Data / survey responses]
+81.1% of users on the survey replied with a mayber or higher to using an app if it will be exclusively for buying/selling within your campus community.
 
 **Team Action (if any):**  
-[Action the team might take]
-
----
+Make it so students can select what college they attend and only see available items and/or services from within that college.
