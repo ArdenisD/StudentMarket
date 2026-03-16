@@ -15,7 +15,7 @@ US 2 – Browse Marketplace Listings
 If a search bar is visible on the homepage, more students will search for items directly instead of scrolling through listings, which will increase listing interactions.
 
 ## What Problem Are We Trying to Solve?
-Students using DormDeals may want to quickly find specific items (for example: textbooks, furniture, or electronics). If the search feature is not immediately visible, users may instead scroll through listings and potentially miss items they are looking for.
+Students using StudentMarket may want to quickly find specific items (for example: textbooks, furniture, or electronics). If the search feature is not immediately visible, users may instead scroll through listings and potentially miss items they are looking for.
 
 This could reduce engagement with listings and slow down the browsing process.
 
