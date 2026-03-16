@@ -25,7 +25,3 @@ CTR = number of users clicking a listing divided by number of users who saw the 
 • **Average Listings Viewed per Session (Custom Metric)**  
 Tracked using Firebase Analytics events that log every `listing_view` event.  
 The average number of listing views per user session is calculated using these events.
-
-• **First Listing Created by New User**  
-Tracked with a custom Firebase Analytics event `listing_created`.  
-This metric measures the percentage of new users who create their first listing within 24 hours of signup.
