@@ -4,7 +4,7 @@
 Homepage Search Bar Visibility
 
 ## User Story Number
-US 2 – Browse Marketplace Listings
+US 4 – Browse Marketplace Listings (Part of Golden Path)
 
 ## Metrics
 - CTR for search_submit event
