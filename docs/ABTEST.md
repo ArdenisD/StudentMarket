@@ -85,24 +85,33 @@ Each listing page shows related items at the bottom of the page, these listings 
 
 # Ardenis's AB Test...
 
-A/B Test Name
+## A/B Test Name
 Single Swipeable  Image vs. Three Small Image Thumbnails on Listing Details
 User Story Number
-US 4 – Browse Marketplace Listings (Part of Golden Path)
-Metrics
+
+## US 4 – Browse Marketplace Listings (Part of Golden Path)
+
+## Metrics
 
 listing_image_swipe event rate among users who open a listing
 Average time spent on listingDetails screen per session
 contact_seller_initiated rate from listingDetails
 listing_abandoned rate — user opens a listing then immediately bounces back to searchHome
 
-Hypothesis
+## Hypothesis
+
 If the three small image thumbnail icons on listingDetails are replaced with a single large swipeable hero image carousel, users will spend more time engaging with the listing and will be more likely to initiate contact with the seller. The current three-icon layout renders product images too small to evaluate item quality, condition, or details — which are the primary factors a student buyer needs to assess before committing to an in-person pickup transaction. A larger image lowers the visual effort required to evaluate a listing and should directly reduce bounce rate and increase seller contact rate.
-What Problem Are We Trying to Solve?
+
+## What Problem Are We Trying to Solve?
+
 StudentMarket is a peer-to-peer physical goods marketplace where all transactions involve in-person pickup. This means buyers cannot inspect items before meeting the seller, making listing photos the single most important trust and decision-making signal available on the platform. The current listingDetails design displays product images as three small equally-sized icons in a row. At that size, users cannot reliably assess item condition, color accuracy, or damage — the exact things that determine whether a student decides to message a seller or keep scrolling. If a buyer cannot clearly see what they are buying, they will not reach out. This directly suppresses contact_seller_initiated events and slows down transaction volume on the platform, harming both buyers who can't find what they need and sellers who can't move their items.
-Experiment
+
+## Experiment
+
 Using Firebase Remote Config, we will test whether replacing the three small image thumbnails with a single large swipeable hero image carousel on listingDetails increases seller contact rate and reduces listing bounce rate.
-Audience:
+
+## Audience:
+
 All users who open any listing from searchHome or any other navigation path into listingDetails.
 User Allocation:
 
@@ -117,7 +126,9 @@ listing_abandoned — user exits the listing within 5 seconds of opening it
 Average time in seconds spent on listingDetails per session
 
 The experiment will run for approximately two weeks with enough traffic to detect a 5% difference in contact_seller_initiated rate at 95% statistical significance.
-Variations
+
+## Variations
+
 Variation A (Control)
 The listingDetails screen displays the current design: three equally-sized small image thumbnail icons arranged in a horizontal row near the top of the listing page. Tapping a thumbnail does not expand or enlarge the image.
 Variation B (Experiment)
