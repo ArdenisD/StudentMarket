@@ -43,7 +43,46 @@ The homepage shows featured listings and a “View All Listings” button. The s
 Variation B (Experiment)
 The homepage includes a visible search bar at the top of the page so users can search immediately.
 
-# Evan's AB Test...
+# Evan’s AB Test...
+
+## A/B Test Name
+Related Items Visibility
+
+## User Story Number
+US 4 – Marketplace Listings (Part of Golden Path)
+
+## Metrics
+- Average number of listings viewed per session
+
+## Hypothesis
+If related items or services are shown at the bottom of each listing there is an increased opportunity for users to view another item or service which could increase the probability of the user purchasing something
+
+## What Problem Are We Trying to Solve?
+Sellers on Student Market are likely to be selling similar items, such as old books, furniture, or services like tutoring. Since there are many items it may be difficult to find the most ideal fit for their need which could reduce the amount of overall sales on the app. With related items being shown it may be easier for users to find multiple similar items based on a listing they’re already viewing. 
+
+## Experiment
+Using Firebase Remote Config, we will test whether showing related items at the bottom of listings increases the average amount of viewed listings per session.
+
+Audience:
+All users who open a listing.
+
+User Allocation:
+- 50% of users see Version A
+- 50% of users see Version B
+
+Firebase Analytics will track:
+- Average number of listings viewed per session
+
+The experiment will run for two weeks.
+
+## Variations
+
+Variation A (Control)
+Shows listings as normal meaning no related items section at the bottom of listing pages. 
+
+Variation B (Experiment)
+Each listing page shows related items at the bottom of the page, these listings are selected based on categories that match with the initial listing.  
+
 # Ardenis's AB Test...
 # Zach's AB Test...
 
