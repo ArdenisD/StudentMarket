@@ -86,53 +86,54 @@ Each listing page shows related items at the bottom of the page, these listings 
 # Ardenis's AB Test...
 
 ## A/B Test Name
-Single Swipeable  Image vs. Three Small Image Thumbnails on Listing Details
-User Story Number
+Swipeable Image Carousel vs Static Image Grid
 
-## US 4 – Browse Marketplace Listings (Part of Golden Path)
+## User Story Number
+US 4 – Browse Marketplace Listings (Part of Golden Path)
 
 ## Metrics
-
-listing_image_swipe event rate among users who open a listing
-Average time spent on listingDetails screen per session
-contact_seller_initiated rate from listingDetails
-listing_abandoned rate — user opens a listing then immediately bounces back to searchHome
+- CTR for listing_click event  
+- Average time spent on listing_detail page  
+- Number of image_swipe events per listing  
+- Engagement rate (sessions with interaction / total sessions)  
 
 ## Hypothesis
-
-If the three small image thumbnail icons on listingDetails are replaced with a single large swipeable hero image carousel, users will spend more time engaging with the listing and will be more likely to initiate contact with the seller. The current three-icon layout renders product images too small to evaluate item quality, condition, or details — which are the primary factors a student buyer needs to assess before committing to an in-person pickup transaction. A larger image lowers the visual effort required to evaluate a listing and should directly reduce bounce rate and increase seller contact rate.
+If listings use a swipeable image carousel with one large image instead of multiple small images in a row, users will better view item details and interact more with listings, increasing engagement and clicks.
 
 ## What Problem Are We Trying to Solve?
+Currently, listings display multiple small images side-by-side. These images are harder to see and may not clearly show item details. Users may ignore additional images or scroll past listings quickly because the visuals are not engaging enough.
 
-StudentMarket is a peer-to-peer physical goods marketplace where all transactions involve in-person pickup. This means buyers cannot inspect items before meeting the seller, making listing photos the single most important trust and decision-making signal available on the platform. The current listingDetails design displays product images as three small equally-sized icons in a row. At that size, users cannot reliably assess item condition, color accuracy, or damage — the exact things that determine whether a student decides to message a seller or keep scrolling. If a buyer cannot clearly see what they are buying, they will not reach out. This directly suppresses contact_seller_initiated events and slows down transaction volume on the platform, harming both buyers who can't find what they need and sellers who can't move their items.
+This creates a bottleneck in the browsing experience where users are not fully interacting with listings. As a result, engagement and listing clicks may be lower than expected.
+
+By improving how images are displayed, we aim to make listings more visually appealing and interactive, which should increase user engagement.
 
 ## Experiment
+Using Firebase Remote Config, we will test whether a swipeable image carousel improves user engagement compared to a static image grid.
 
-Using Firebase Remote Config, we will test whether replacing the three small image thumbnails with a single large swipeable hero image carousel on listingDetails increases seller contact rate and reduces listing bounce rate.
+Audience:
+All users who view listings on the homepage or listings page.
 
-## Audience:
-
-All users who open any listing from searchHome or any other navigation path into listingDetails.
 User Allocation:
-
-50% of users see Version A
-50% of users see Version B
+- 50% of users see Version A (Control)  
+- 50% of users see Version B (Experiment)  
 
 Firebase Analytics will track:
+- listing_click (when a user clicks a listing)  
+- image_swipe (when a user swipes to view another image)  
+- listing_view_duration (time spent on listing page)  
+- session_engagement (whether user interacts with listings)  
 
-listing_image_swipe — user swipes through images on a listing
-contact_seller_initiated — user taps to open chat with the seller
-listing_abandoned — user exits the listing within 5 seconds of opening it
-Average time in seconds spent on listingDetails per session
-
-The experiment will run for approximately two weeks with enough traffic to detect a 5% difference in contact_seller_initiated rate at 95% statistical significance.
+The experiment will run for 2 weeks.
 
 ## Variations
 
 Variation A (Control)
-The listingDetails screen displays the current design: three equally-sized small image thumbnail icons arranged in a horizontal row near the top of the listing page. Tapping a thumbnail does not expand or enlarge the image.
+Listings display 3 small images in a row. All images are visible at once and there is no interaction needed to view them.
+
 Variation B (Experiment)
-The three small thumbnails are replaced with a single full-width swipeable hero image at the top of the listingDetails screen. Users can swipe left and right to cycle through all available listing photos. A dot indicator below the image shows how many photos exist and which one is currently displayed. No other changes are made to the listing layout.
+Listings display 1 large image at a time. Users can swipe horizontally to view additional images, with indicators showing more images are available.
+
+
 
 # Zach's AB Test...
 
