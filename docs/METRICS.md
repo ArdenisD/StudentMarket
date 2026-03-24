@@ -18,10 +18,10 @@ Collected automatically through Firebase Analytics which tracks the number of un
 • **Retention Rate**  
 Measured through Firebase Analytics returning user metrics, which track how many users return to the app after their first session (e.g., 7-day or 30-day retention).
 
-• **Click Through Rate (CTR) for Listing View (Golden Path Event)**  
-Implemented using a custom Firebase Analytics event called `listing_click`.  
-CTR = number of users clicking a listing divided by number of users who saw the listing feed.
+• **Click Through Rate (CTR) for Listing Discovery (Golden Path Event)**
+Implemented using two Firebase Analytics custom events called listing_impression and listing_click.
+CTR = number of listing_click events divided by number of listing_impression events.
 
-• **Average Listings Viewed per Session (Custom Metric)**  
-Tracked using Firebase Analytics events that log every `listing_view` event.  
-The average number of listing views per user session is calculated using these events.
+• **Message Initiation Rate (Golden Path Conversion Metric)**
+Tracked using Firebase Analytics custom events that log every listing_view event and message_seller_click event.
+Message Initiation Rate = number of message_seller_click events divided by number of listing_view events.
