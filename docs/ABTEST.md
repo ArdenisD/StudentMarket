@@ -135,48 +135,52 @@ Listings display 1 large image at a time. Users can swipe horizontally to view a
 
 
 
-# Zach's AB Test...
+# Zach's A/B Test...
 
 ## A/B Test Name
-Sign-Up Button Text and Size Change
+Sign-Up Button Text Change
 
 ## User Story Number
 US 1 – Account Creation
 
 ## Metrics
-- CTR for sign_up_button_click event
-- Conversion rate for completed sign-ups
-- Drop-off rate on sign-up page
+Primary Metric: Conversion rate for completed sign-ups
+Secondary Metric: CTR for sign_up_button_click event
+Drop-off rate on sign-up page
 
 ## Hypothesis
-If the sign-up button text is changed from “Sign Up” to “Get Started” and the button is made smaller, users will be more likely to click it because the wording feels less committal and the smaller size may appear less overwhelming, which will increase sign-up interactions.
+If the sign-up button text is changed from “Sign Up” to “Get Started,” users will be more likely to click it because the wording feels less committal and more inviting, which will increase sign-up interactions and completed account creations.
 
 ## What Problem Are We Trying to Solve?
-The current “Sign Up” button may feel too formal or like a large commitment, which could discourage users from clicking it. Additionally, a larger button may feel visually overwhelming or too aggressive.
-
-This could reduce the number of users who begin the account creation process.
+The current “Sign Up” button may feel too formal or like a large commitment, which could discourage users from clicking it.
+This may reduce the number of users who begin and complete the account creation process.
 
 ## Experiment
-Using Firebase Remote Config, we will test whether changing the sign-up button text and size increases user sign-ups.
-
-Audience:
-All new users visiting the sign-up page.
-
-User Allocation:
+Using Firebase Remote Config, we will test whether changing the sign-up button text increases user sign-ups.
+Audience: All users who reach the sign-up screen
+## User Allocation:
 
 50% of users see Version A
 50% of users see Version B
 
-Firebase Analytics will track:
+Tracked in Firebase Analytics:
 
 sign_up_button_click events when users click the sign-up button
 completed_sign_up events when users successfully create an account
 
-The experiment will run for about two weeks.
+Duration: Approximately two weeks
 
 ## Variations
-Variation A (Control)
-The button says “Sign Up” and is displayed in its current larger size.
+
+Variation A (Control):
+
+Button text: “Sign Up”
+Button size: unchanged (current size)
+
+Variation B (Experiment):
+
+Button text: “Get Started”
+Button size: unchanged (current size)
 
 Variation B (Experiment)
 The button says “Get Started” and is displayed in a smaller size.
