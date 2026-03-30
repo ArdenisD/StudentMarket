@@ -6,7 +6,7 @@ Our google HEART framework: [google slides](https://docs.google.com/presentation
 
 • **Net Promoter Score (NPS)**  
 Collected by adding a survey question after every 5th login by a user:  
-"How likely are you to recommend DormDeals to a friend (0-10)?"  
+"How likely are you to recommend StudentMarket to a friend (0-10)?"  
 The response is stored in a Firebase Firestore collection called `user_feedback` with the user's email and score.
 
 • **Adoption (New User Signups)**  
