@@ -5,7 +5,7 @@ Our google HEART framework: [google slides](https://docs.google.com/presentation
 ## Metric Collection Details
 
 • **Net Promoter Score (NPS)**  
-Collected by adding a survey question at the end of the Golden Path:  
+Collected by adding a survey question after every 5th login by a user:  
 "How likely are you to recommend DormDeals to a friend (0-10)?"  
 The response is stored in a Firebase Firestore collection called `user_feedback` with the user's email and score.
 
