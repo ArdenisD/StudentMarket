@@ -10,7 +10,8 @@ Future initFirebase() async {
             projectId: "student-market-q1ib93",
             storageBucket: "student-market-q1ib93.firebasestorage.app",
             messagingSenderId: "248213702035",
-            appId: "1:248213702035:web:be2be71163c94736b85466"));
+            appId: "1:248213702035:web:be2be71163c94736b85466",
+            measurementId: "G-SWL1G25DY8"));
   } else {
     await Firebase.initializeApp();
   }

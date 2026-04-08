@@ -6,6 +6,11 @@ import '../flutter_flow/flutter_flow_util.dart';
 import 'schema/util/firestore_util.dart';
 
 import 'schema/user_data_record.dart';
+import 'schema/listings_record.dart';
+import 'schema/users_record.dart';
+import 'schema/nps_responses_record.dart';
+import 'schema/chats_record.dart';
+import 'schema/messages_record.dart';
 
 export 'dart:async' show StreamSubscription;
 export 'package:cloud_firestore/cloud_firestore.dart' hide Order;
@@ -15,6 +20,11 @@ export 'schema/util/firestore_util.dart';
 export 'schema/util/schema_util.dart';
 
 export 'schema/user_data_record.dart';
+export 'schema/listings_record.dart';
+export 'schema/users_record.dart';
+export 'schema/nps_responses_record.dart';
+export 'schema/chats_record.dart';
+export 'schema/messages_record.dart';
 
 /// Functions to query UserDataRecords (as a Stream and as a Future).
 Future<int> queryUserDataRecordCount({
@@ -48,6 +58,194 @@ Future<List<UserDataRecord>> queryUserDataRecordOnce({
     queryCollectionOnce(
       UserDataRecord.collection,
       UserDataRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+/// Functions to query ListingsRecords (as a Stream and as a Future).
+Future<int> queryListingsRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      ListingsRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<ListingsRecord>> queryListingsRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      ListingsRecord.collection,
+      ListingsRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<ListingsRecord>> queryListingsRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      ListingsRecord.collection,
+      ListingsRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+/// Functions to query UsersRecords (as a Stream and as a Future).
+Future<int> queryUsersRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      UsersRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<UsersRecord>> queryUsersRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      UsersRecord.collection,
+      UsersRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<UsersRecord>> queryUsersRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      UsersRecord.collection,
+      UsersRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+/// Functions to query NpsResponsesRecords (as a Stream and as a Future).
+Future<int> queryNpsResponsesRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      NpsResponsesRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<NpsResponsesRecord>> queryNpsResponsesRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      NpsResponsesRecord.collection,
+      NpsResponsesRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<NpsResponsesRecord>> queryNpsResponsesRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      NpsResponsesRecord.collection,
+      NpsResponsesRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+/// Functions to query ChatsRecords (as a Stream and as a Future).
+Future<int> queryChatsRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      ChatsRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<ChatsRecord>> queryChatsRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      ChatsRecord.collection,
+      ChatsRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<ChatsRecord>> queryChatsRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      ChatsRecord.collection,
+      ChatsRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+/// Functions to query MessagesRecords (as a Stream and as a Future).
+Future<int> queryMessagesRecordCount({
+  DocumentReference? parent,
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      MessagesRecord.collection(parent),
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<MessagesRecord>> queryMessagesRecord({
+  DocumentReference? parent,
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      MessagesRecord.collection(parent),
+      MessagesRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<MessagesRecord>> queryMessagesRecordOnce({
+  DocumentReference? parent,
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      MessagesRecord.collection(parent),
+      MessagesRecord.fromSnapshot,
       queryBuilder: queryBuilder,
       limit: limit,
       singleRecord: singleRecord,

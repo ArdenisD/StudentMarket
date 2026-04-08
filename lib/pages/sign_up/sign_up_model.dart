@@ -1,15 +1,15 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import '/index.dart';
-import 'sign_up1_widget.dart' show SignUp1Widget;
+import '/flutter_flow/form_field_controller.dart';
+import 'sign_up_widget.dart' show SignUpWidget;
 import 'package:flutter/material.dart';
 
-class SignUp1Model extends FlutterFlowModel<SignUp1Widget> {
-  ///  State fields for stateful widgets in this page.
+class SignUpModel extends FlutterFlowModel<SignUpWidget> {
+  ///  State fields for stateful widgets in this component.
 
-  bool isDataUploading_uploadDataZ4f = false;
-  FFUploadedFile uploadedLocalFile_uploadDataZ4f =
+  bool isDataUploading_profileImage = false;
+  FFUploadedFile uploadedLocalFile_profileImage =
       FFUploadedFile(bytes: Uint8List.fromList([]), originalFilename: '');
-  String uploadedFileUrl_uploadDataZ4f = '';
+  String uploadedFileUrl_profileImage = '';
 
   // State field(s) for userName widget.
   FocusNode? userNameFocusNode;
@@ -29,6 +29,18 @@ class SignUp1Model extends FlutterFlowModel<SignUp1Widget> {
   TextEditingController? confirmPassTextController;
   late bool confirmPassVisibility;
   String? Function(BuildContext, String?)? confirmPassTextControllerValidator;
+  // State field(s) for universities widget.
+  String? universitiesValue;
+  FormFieldController<String>? universitiesValueController;
+  // State field(s) for gradYears widget.
+  String? gradYearsValue;
+  FormFieldController<String>? gradYearsValueController;
+  // State field(s) for textField widget.
+  FocusNode? textFieldFocusNode;
+  TextEditingController? textFieldTextController;
+  String? Function(BuildContext, String?)? textFieldTextControllerValidator;
+  // State field(s) for Checkbox widget.
+  bool? checkboxValue;
 
   @override
   void initState(BuildContext context) {
@@ -49,5 +61,8 @@ class SignUp1Model extends FlutterFlowModel<SignUp1Widget> {
 
     confirmPassFocusNode?.dispose();
     confirmPassTextController?.dispose();
+
+    textFieldFocusNode?.dispose();
+    textFieldTextController?.dispose();
   }
 }

@@ -37,6 +37,32 @@ class UnivsersityNamesCall {
           .toList();
 }
 
+class AiPricingCall {
+  static Future<ApiCallResponse> call({
+    String? message = 'No prompt provided...',
+  }) async {
+    final ffApiRequestBody = '''
+{
+  "prompt": "${escapeStringForJson(message)}"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'aiPricing',
+      apiUrl: 'AIzaSyDMyxApBPNDI0k88o666FcEo2UEhniTQRs',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
 class ApiPagingParams {
   int nextPageNumber = 0;
   int numItems = 0;
@@ -82,4 +108,15 @@ String _serializeJson(dynamic jsonVar, [bool isList = false]) {
     }
     return isList ? '[]' : '{}';
   }
+}
+
+String? escapeStringForJson(String? input) {
+  if (input == null) {
+    return null;
+  }
+  return input
+      .replaceAll('\\', '\\\\')
+      .replaceAll('"', '\\"')
+      .replaceAll('\n', '\\n')
+      .replaceAll('\t', '\\t');
 }

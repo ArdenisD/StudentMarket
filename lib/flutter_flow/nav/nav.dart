@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '/backend/backend.dart';
 
 import '/auth/base_auth_user_provider.dart';
 
@@ -70,19 +71,40 @@ class AppStateNotifier extends ChangeNotifier {
   }
 }
 
-GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
+GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
+    GoRouter(
       initialLocation: '/',
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       navigatorKey: appNavigatorKey,
-      errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? HomeWidget() : LoginWidget(),
+      errorBuilder: (context, state) => appStateNotifier.loggedIn
+          ? entryPage ?? SearchHomeWidget()
+          : LoginWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
-          builder: (context, _) =>
-              appStateNotifier.loggedIn ? HomeWidget() : LoginWidget(),
+          builder: (context, _) => appStateNotifier.loggedIn
+              ? entryPage ?? SearchHomeWidget()
+              : LoginWidget(),
+        ),
+        FFRoute(
+          name: ForgotPasswordWidget.routeName,
+          path: ForgotPasswordWidget.routePath,
+          builder: (context, params) => ForgotPasswordWidget(),
+        ),
+        FFRoute(
+          name: ListingDetailsWidget.routeName,
+          path: ListingDetailsWidget.routePath,
+          asyncParams: {
+            'listingDoc': getDoc(['listings'], ListingsRecord.fromSnapshot),
+          },
+          builder: (context, params) => ListingDetailsWidget(
+            listingDoc: params.getParam(
+              'listingDoc',
+              ParamType.Document,
+            ),
+          ),
         ),
         FFRoute(
           name: LoginWidget.routeName,
@@ -90,19 +112,37 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => LoginWidget(),
         ),
         FFRoute(
-          name: SignUp1Widget.routeName,
-          path: SignUp1Widget.routePath,
-          builder: (context, params) => SignUp1Widget(),
+          name: ProfileWidget.routeName,
+          path: ProfileWidget.routePath,
+          builder: (context, params) => ProfileWidget(),
         ),
         FFRoute(
-          name: SignUp2Widget.routeName,
-          path: SignUp2Widget.routePath,
-          builder: (context, params) => SignUp2Widget(),
+          name: SearchHomeWidget.routeName,
+          path: SearchHomeWidget.routePath,
+          builder: (context, params) => SearchHomeWidget(),
         ),
         FFRoute(
-          name: HomeWidget.routeName,
-          path: HomeWidget.routePath,
-          builder: (context, params) => HomeWidget(),
+          name: ChatScreenWidget.routeName,
+          path: ChatScreenWidget.routePath,
+          builder: (context, params) => ChatScreenWidget(
+            otherUserUid: params.getParam(
+              'otherUserUid',
+              ParamType.String,
+            ),
+            otherUserName: params.getParam(
+              'otherUserName',
+              ParamType.String,
+            ),
+            otherUserPhoto: params.getParam(
+              'otherUserPhoto',
+              ParamType.String,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: MessagesListWidget.routeName,
+          path: MessagesListWidget.routePath,
+          builder: (context, params) => MessagesListWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

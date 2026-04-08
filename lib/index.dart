@@ -1,5 +1,10 @@
 // Export pages
+export '/pages/forgot_password/forgot_password_widget.dart'
+    show ForgotPasswordWidget;
+export '/pages/listing_details/listing_details_widget.dart'
+    show ListingDetailsWidget;
 export '/pages/login/login_widget.dart' show LoginWidget;
-export '/pages/sign_up_1/sign_up1_widget.dart' show SignUp1Widget;
-export '/pages/sign_up_2/sign_up2_widget.dart' show SignUp2Widget;
-export '/home/home_widget.dart' show HomeWidget;
+export '/pages/profile/profile_widget.dart' show ProfileWidget;
+export '/pages/search_home/search_home_widget.dart' show SearchHomeWidget;
+export '/pages/chat_screen/chat_screen_widget.dart' show ChatScreenWidget;
+export '/messages_list/messages_list_widget.dart' show MessagesListWidget;

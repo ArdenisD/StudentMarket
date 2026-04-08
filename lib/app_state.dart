@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class FFAppState extends ChangeNotifier {
   static FFAppState _instance = FFAppState._internal();
@@ -13,12 +14,19 @@ class FFAppState extends ChangeNotifier {
     _instance = FFAppState._internal();
   }
 
-  Future initializePersistedState() async {}
+  Future initializePersistedState() async {
+    prefs = await SharedPreferences.getInstance();
+    _safeInit(() {
+      _loginAmount = prefs.getInt('ff_loginAmount') ?? _loginAmount;
+    });
+  }
 
   void update(VoidCallback callback) {
     callback();
     notifyListeners();
   }
+
+  late SharedPreferences prefs;
 
   List<String> _universityNameList = [];
   List<String> get universityNameList => _universityNameList;
@@ -48,4 +56,29 @@ class FFAppState extends ChangeNotifier {
   void insertAtIndexInUniversityNameList(int index, String value) {
     universityNameList.insert(index, value);
   }
+
+  int _NPS = 0;
+  int get NPS => _NPS;
+  set NPS(int value) {
+    _NPS = value;
+  }
+
+  int _loginAmount = 0;
+  int get loginAmount => _loginAmount;
+  set loginAmount(int value) {
+    _loginAmount = value;
+    prefs.setInt('ff_loginAmount', value);
+  }
+}
+
+void _safeInit(Function() initializeField) {
+  try {
+    initializeField();
+  } catch (_) {}
+}
+
+Future _safeInitAsync(Function() initializeField) async {
+  try {
+    await initializeField();
+  } catch (_) {}
 }
