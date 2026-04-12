@@ -10,7 +10,9 @@ class ChatScreenModel extends FlutterFlowModel<ChatScreenWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  // Stores action output result for [Backend Call - Create Document] action in chatScreen widget.
+  // Stores action output result for [Firestore Query - Query a collection] action in chatScreen widget.
+  ChatsRecord? existingChat;
+  // Stores action output result for [Firestore Query - Query a collection] action in chatScreen widget.
   ChatsRecord? chatRef;
   // State field(s) for toBeSent widget.
   FocusNode? toBeSentFocusNode;

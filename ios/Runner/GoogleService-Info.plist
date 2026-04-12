@@ -9,7 +9,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.mycompany.studentmarket</string>
+	<string>com.uricsc305.studentmarket</string>
 	<key>PROJECT_ID</key>
 	<string>student-market-q1ib93</string>
 	<key>STORAGE_BUCKET</key>
@@ -25,6 +25,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:248213702035:ios:4e8907a08b5c4413b85466</string>
+	<string>1:248213702035:ios:2ff8933a8ef940a0b85466</string>
 </dict>
 </plist>

@@ -165,6 +165,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                         Container(
                           width: 300.0,
                           child: TextFormField(
+                            key: ValueKey('uniEmail_celd'),
                             controller: _model.uniEmailTextController,
                             focusNode: _model.uniEmailFocusNode,
                             autofocus: false,
@@ -304,6 +305,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                         Container(
                           width: 300.0,
                           child: TextFormField(
+                            key: ValueKey('pass_jwa9'),
                             controller: _model.passTextController,
                             focusNode: _model.passFocusNode,
                             autofocus: false,
@@ -463,6 +465,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                       ].divide(SizedBox(height: 4.0)),
                     ),
                     FFButtonWidget(
+                      key: ValueKey('signInButton_vxws'),
                       onPressed: () async {
                         logFirebaseEvent('LOGIN_PAGE_signInButton_ON_TAP');
                         logFirebaseEvent('signInButton_auth');

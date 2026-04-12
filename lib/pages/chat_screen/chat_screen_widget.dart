@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -46,25 +47,41 @@ class _ChatScreenWidgetState extends State<ChatScreenWidget> {
       logFirebaseEvent('chatScreen_update_page_state');
       _model.chatId =
           functions.setChatId(widget.otherUserUid!, currentUserUid);
-      logFirebaseEvent('chatScreen_backend_call');
+      logFirebaseEvent('chatScreen_firestore_query');
+      _model.existingChat = await queryChatsRecordOnce(
+        queryBuilder: (chatsRecord) => chatsRecord.where(
+          'chat_Id',
+          isEqualTo: _model.chatId,
+        ),
+        singleRecord: true,
+      ).then((s) => s.firstOrNull);
+      if (!(_model.existingChat != null ? true : false)) {
+        logFirebaseEvent('chatScreen_backend_call');
 
-      var chatsRecordReference = ChatsRecord.collection.doc(_model.chatId!);
-      await chatsRecordReference.set(createChatsRecordData(
-        buyerUid: currentUserUid,
-        buyerName: currentUserDisplayName,
-        sellerUid: widget.otherUserUid,
-        chatId: _model.chatId,
-        sellerName: widget.otherUserName,
-      ));
-      _model.chatRef = ChatsRecord.getDocumentFromData(
-          createChatsRecordData(
+        await ChatsRecord.collection.doc(_model.chatId!).set({
+          ...createChatsRecordData(
             buyerUid: currentUserUid,
             buyerName: currentUserDisplayName,
             sellerUid: widget.otherUserUid,
             chatId: _model.chatId,
             sellerName: widget.otherUserName,
+            lastMessage: ' ',
           ),
-          chatsRecordReference);
+          ...mapToFirestore(
+            {
+              'last_message_time': FieldValue.serverTimestamp(),
+            },
+          ),
+        });
+      }
+      logFirebaseEvent('chatScreen_firestore_query');
+      _model.chatRef = await queryChatsRecordOnce(
+        queryBuilder: (chatsRecord) => chatsRecord.where(
+          'chat_Id',
+          isEqualTo: _model.chatId,
+        ),
+        singleRecord: true,
+      ).then((s) => s.firstOrNull);
       logFirebaseEvent('chatScreen_rebuild_page');
       safeSetState(() {});
     });

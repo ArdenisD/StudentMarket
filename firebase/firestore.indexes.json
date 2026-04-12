@@ -14,7 +14,7 @@
         },
         {
           "fieldPath": "last_message",
-          "order": "ASCENDING"
+          "order": "DESCENDING"
         }
       ]
     }

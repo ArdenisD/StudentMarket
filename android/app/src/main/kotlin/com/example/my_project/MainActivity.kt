@@ -1,4 +1,4 @@
-package com.mycompany.studentmarket
+package com.uricsc305.studentmarket
 
 import io.flutter.embedding.android.FlutterActivity
 

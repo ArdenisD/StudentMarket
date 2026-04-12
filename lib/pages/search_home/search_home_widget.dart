@@ -388,6 +388,7 @@ class _SearchHomeWidgetState extends State<SearchHomeWidget> {
                       ),
                     ),
                     FlutterFlowDropDown<String>(
+                      key: ValueKey('DropDown_srl6'),
                       controller: _model.dropDownValueController ??=
                           FormFieldController<String>(
                         _model.dropDownValue ??= 'All',
