@@ -1,6 +1,6 @@
-- <link to template slide> US1: User Account Creation
+- <https://docs.google.com/presentation/d/1XO1cYeRpMS7xjycubJqXhYPUHRCDaWfpsv2gOFGScrE/edit?slide=id.p#slide=id.p> US1: User Account Creation
 
-- <link to template slide> US2: User Login
+- <link to template sli> US2: User Login
 
 - <link to template slide> US3: Backend Management
 
