@@ -1,0 +1,22 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "chats",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "seller_uid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "buyer_uid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "last_message",
+          "order": "DESCENDING"
+        }
+      ]
+    }
+  ]
+}
