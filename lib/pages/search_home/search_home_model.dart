@@ -23,12 +23,16 @@ class SearchHomeModel extends FlutterFlowModel<SearchHomeWidget> {
   late FlutterFlowDynamicModels<ListingPreviewModel> listingPreviewModels1;
   // Models for listingPreview dynamic component.
   late FlutterFlowDynamicModels<ListingPreviewModel> listingPreviewModels2;
+  // Models for listingPreview dynamic component.
+  late FlutterFlowDynamicModels<ListingPreviewModel> listingPreviewModels3;
 
   @override
   void initState(BuildContext context) {
     listingPreviewModels1 =
         FlutterFlowDynamicModels(() => ListingPreviewModel());
     listingPreviewModels2 =
+        FlutterFlowDynamicModels(() => ListingPreviewModel());
+    listingPreviewModels3 =
         FlutterFlowDynamicModels(() => ListingPreviewModel());
   }
 
@@ -39,5 +43,6 @@ class SearchHomeModel extends FlutterFlowModel<SearchHomeWidget> {
 
     listingPreviewModels1.dispose();
     listingPreviewModels2.dispose();
+    listingPreviewModels3.dispose();
   }
 }

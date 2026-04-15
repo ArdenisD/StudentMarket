@@ -1,3 +1,4 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -404,7 +405,8 @@ class _SearchHomeWidgetState extends State<SearchHomeWidget> {
                         'Entertainment',
                         'Kitchen usage',
                         'Services',
-                        'Housing'
+                        'Housing',
+                        'Car Rides'
                       ],
                       onChanged: (val) async {
                         safeSetState(() => _model.dropDownValue = val);
@@ -461,41 +463,130 @@ class _SearchHomeWidgetState extends State<SearchHomeWidget> {
                       child: Stack(
                         children: [
                           if (_model.selectedCategory == 'All')
-                            StreamBuilder<List<ListingsRecord>>(
-                              stream: queryListingsRecord(),
-                              builder: (context, snapshot) {
-                                // Customize what your widget looks like when it's loading.
-                                if (!snapshot.hasData) {
-                                  return Center(
-                                    child: SizedBox(
-                                      width: 50.0,
-                                      height: 50.0,
-                                      child: CircularProgressIndicator(
-                                        valueColor:
-                                            AlwaysStoppedAnimation<Color>(
-                                          FlutterFlowTheme.of(context).primary,
+                            AuthUserStreamWidget(
+                              builder: (context) =>
+                                  StreamBuilder<List<ListingsRecord>>(
+                                stream: queryListingsRecord(
+                                  queryBuilder: (listingsRecord) =>
+                                      listingsRecord.where(
+                                    'college',
+                                    isEqualTo: valueOrDefault(
+                                        currentUserDocument?.univsersity, ''),
+                                  ),
+                                ),
+                                builder: (context, snapshot) {
+                                  // Customize what your widget looks like when it's loading.
+                                  if (!snapshot.hasData) {
+                                    return Center(
+                                      child: SizedBox(
+                                        width: 50.0,
+                                        height: 50.0,
+                                        child: CircularProgressIndicator(
+                                          valueColor:
+                                              AlwaysStoppedAnimation<Color>(
+                                            FlutterFlowTheme.of(context)
+                                                .primary,
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  );
-                                }
-                                List<ListingsRecord>
-                                    listViewListingsRecordList = snapshot.data!;
+                                    );
+                                  }
+                                  List<ListingsRecord>
+                                      gridViewListingsRecordList =
+                                      snapshot.data!;
 
-                                return ListView.separated(
-                                  padding: EdgeInsets.zero,
-                                  scrollDirection: Axis.vertical,
-                                  itemCount: listViewListingsRecordList.length,
-                                  separatorBuilder: (_, __) =>
-                                      SizedBox(height: 12.0),
-                                  itemBuilder: (context, listViewIndex) {
-                                    final listViewListingsRecord =
-                                        listViewListingsRecordList[
-                                            listViewIndex];
-                                    return Container(
-                                      key: ValueKey('listingPreview_z9e9'),
-                                      child: wrapWithModel(
-                                        model: _model.listingPreviewModels1
+                                  return GridView.builder(
+                                    padding: EdgeInsets.zero,
+                                    gridDelegate:
+                                        SliverGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisCount: 2,
+                                      crossAxisSpacing: 10.0,
+                                      mainAxisSpacing: 10.0,
+                                      childAspectRatio: 1.0,
+                                    ),
+                                    scrollDirection: Axis.vertical,
+                                    itemCount:
+                                        gridViewListingsRecordList.length,
+                                    itemBuilder: (context, gridViewIndex) {
+                                      final gridViewListingsRecord =
+                                          gridViewListingsRecordList[
+                                              gridViewIndex];
+                                      return Container(
+                                        key: ValueKey('listingPreview_z9e9'),
+                                        child: wrapWithModel(
+                                          model: _model.listingPreviewModels1
+                                              .getModel(
+                                            gridViewListingsRecord.reference.id,
+                                            gridViewIndex,
+                                          ),
+                                          updateCallback: () =>
+                                              safeSetState(() {}),
+                                          child: ListingPreviewWidget(
+                                            key: Key(
+                                              'Keyjoi_${gridViewListingsRecord.reference.id}',
+                                            ),
+                                            listingDoc: gridViewListingsRecord,
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  );
+                                },
+                              ),
+                            ),
+                          if (_model.selectedCategory != 'All')
+                            AuthUserStreamWidget(
+                              builder: (context) =>
+                                  StreamBuilder<List<ListingsRecord>>(
+                                stream: queryListingsRecord(
+                                  queryBuilder: (listingsRecord) =>
+                                      listingsRecord
+                                          .where(
+                                            'category',
+                                            isEqualTo: _model.selectedCategory,
+                                          )
+                                          .where(
+                                            'college',
+                                            isEqualTo: valueOrDefault(
+                                                currentUserDocument
+                                                    ?.univsersity,
+                                                ''),
+                                          ),
+                                ),
+                                builder: (context, snapshot) {
+                                  // Customize what your widget looks like when it's loading.
+                                  if (!snapshot.hasData) {
+                                    return Center(
+                                      child: SizedBox(
+                                        width: 50.0,
+                                        height: 50.0,
+                                        child: CircularProgressIndicator(
+                                          valueColor:
+                                              AlwaysStoppedAnimation<Color>(
+                                            FlutterFlowTheme.of(context)
+                                                .primary,
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  }
+                                  List<ListingsRecord>
+                                      listViewListingsRecordList =
+                                      snapshot.data!;
+
+                                  return ListView.separated(
+                                    padding: EdgeInsets.zero,
+                                    scrollDirection: Axis.vertical,
+                                    itemCount:
+                                        listViewListingsRecordList.length,
+                                    separatorBuilder: (_, __) =>
+                                        SizedBox(height: 12.0),
+                                    itemBuilder: (context, listViewIndex) {
+                                      final listViewListingsRecord =
+                                          listViewListingsRecordList[
+                                              listViewIndex];
+                                      return wrapWithModel(
+                                        model: _model.listingPreviewModels2
                                             .getModel(
                                           listViewListingsRecord.reference.id,
                                           listViewIndex,
@@ -504,71 +595,79 @@ class _SearchHomeWidgetState extends State<SearchHomeWidget> {
                                             safeSetState(() {}),
                                         child: ListingPreviewWidget(
                                           key: Key(
-                                            'Keyjoi_${listViewListingsRecord.reference.id}',
+                                            'Keyias_${listViewListingsRecord.reference.id}',
                                           ),
                                           listingDoc: listViewListingsRecord,
                                         ),
-                                      ),
-                                    );
-                                  },
-                                );
-                              },
-                            ),
-                          if (_model.selectedCategory != 'All')
-                            StreamBuilder<List<ListingsRecord>>(
-                              stream: queryListingsRecord(
-                                queryBuilder: (listingsRecord) =>
-                                    listingsRecord.where(
-                                  'category',
-                                  isEqualTo: _model.selectedCategory,
-                                ),
-                              ),
-                              builder: (context, snapshot) {
-                                // Customize what your widget looks like when it's loading.
-                                if (!snapshot.hasData) {
-                                  return Center(
-                                    child: SizedBox(
-                                      width: 50.0,
-                                      height: 50.0,
-                                      child: CircularProgressIndicator(
-                                        valueColor:
-                                            AlwaysStoppedAnimation<Color>(
-                                          FlutterFlowTheme.of(context).primary,
-                                        ),
-                                      ),
-                                    ),
+                                      );
+                                    },
                                   );
-                                }
-                                List<ListingsRecord>
-                                    listViewListingsRecordList = snapshot.data!;
-
-                                return ListView.separated(
-                                  padding: EdgeInsets.zero,
-                                  scrollDirection: Axis.vertical,
-                                  itemCount: listViewListingsRecordList.length,
-                                  separatorBuilder: (_, __) =>
-                                      SizedBox(height: 12.0),
-                                  itemBuilder: (context, listViewIndex) {
-                                    final listViewListingsRecord =
-                                        listViewListingsRecordList[
-                                            listViewIndex];
-                                    return wrapWithModel(
-                                      model:
-                                          _model.listingPreviewModels2.getModel(
-                                        listViewListingsRecord.reference.id,
-                                        listViewIndex,
-                                      ),
-                                      updateCallback: () => safeSetState(() {}),
-                                      child: ListingPreviewWidget(
-                                        key: Key(
-                                          'Keyias_${listViewListingsRecord.reference.id}',
+                                },
+                              ),
+                            ),
+                          if (_model.selectedCategory == 'All')
+                            AuthUserStreamWidget(
+                              builder: (context) =>
+                                  StreamBuilder<List<ListingsRecord>>(
+                                stream: queryListingsRecord(
+                                  queryBuilder: (listingsRecord) =>
+                                      listingsRecord.where(
+                                    'college',
+                                    isEqualTo: valueOrDefault(
+                                        currentUserDocument?.univsersity, ''),
+                                  ),
+                                ),
+                                builder: (context, snapshot) {
+                                  // Customize what your widget looks like when it's loading.
+                                  if (!snapshot.hasData) {
+                                    return Center(
+                                      child: SizedBox(
+                                        width: 50.0,
+                                        height: 50.0,
+                                        child: CircularProgressIndicator(
+                                          valueColor:
+                                              AlwaysStoppedAnimation<Color>(
+                                            FlutterFlowTheme.of(context)
+                                                .primary,
+                                          ),
                                         ),
-                                        listingDoc: listViewListingsRecord,
                                       ),
                                     );
-                                  },
-                                );
-                              },
+                                  }
+                                  List<ListingsRecord>
+                                      listViewListingsRecordList =
+                                      snapshot.data!;
+
+                                  return ListView.separated(
+                                    padding: EdgeInsets.zero,
+                                    scrollDirection: Axis.vertical,
+                                    itemCount:
+                                        listViewListingsRecordList.length,
+                                    separatorBuilder: (_, __) =>
+                                        SizedBox(height: 12.0),
+                                    itemBuilder: (context, listViewIndex) {
+                                      final listViewListingsRecord =
+                                          listViewListingsRecordList[
+                                              listViewIndex];
+                                      return wrapWithModel(
+                                        model: _model.listingPreviewModels3
+                                            .getModel(
+                                          listViewListingsRecord.reference.id,
+                                          listViewIndex,
+                                        ),
+                                        updateCallback: () =>
+                                            safeSetState(() {}),
+                                        child: ListingPreviewWidget(
+                                          key: Key(
+                                            'Keyfe9_${listViewListingsRecord.reference.id}',
+                                          ),
+                                          listingDoc: listViewListingsRecord,
+                                        ),
+                                      );
+                                    },
+                                  );
+                                },
+                              ),
                             ),
                         ],
                       ),

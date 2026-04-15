@@ -1,5 +1,5 @@
-class GeminiPricingCloudFunctionCallResponse {
-  GeminiPricingCloudFunctionCallResponse({
+class MyAICloudFunctionCallResponse {
+  MyAICloudFunctionCallResponse({
     this.errorCode,
     this.succeeded,
     this.jsonBody,

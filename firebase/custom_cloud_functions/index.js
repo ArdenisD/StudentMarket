@@ -1,5 +1,5 @@
 const admin = require("firebase-admin/app");
 admin.initializeApp();
 
-const geminiPricing = require("./gemini_pricing.js");
-exports.geminiPricing = geminiPricing.geminiPricing;
+const myAI = require("./my_a_i.js");
+exports.myAI = myAI.myAI;

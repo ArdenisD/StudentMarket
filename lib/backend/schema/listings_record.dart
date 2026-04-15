@@ -85,6 +85,11 @@ class ListingsRecord extends FirestoreRecord {
   String get imageThree => _imageThree ?? '';
   bool hasImageThree() => _imageThree != null;
 
+  // "college" field.
+  String? _college;
+  String get college => _college ?? '';
+  bool hasCollege() => _college != null;
+
   void _initializeFields() {
     _title = snapshotData['title'] as String?;
     _description = snapshotData['description'] as String?;
@@ -100,6 +105,7 @@ class ListingsRecord extends FirestoreRecord {
     _imageOne = snapshotData['imageOne'] as String?;
     _imageTwo = snapshotData['imageTwo'] as String?;
     _imageThree = snapshotData['imageThree'] as String?;
+    _college = snapshotData['college'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -151,6 +157,7 @@ Map<String, dynamic> createListingsRecordData({
   String? imageOne,
   String? imageTwo,
   String? imageThree,
+  String? college,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -168,6 +175,7 @@ Map<String, dynamic> createListingsRecordData({
       'imageOne': imageOne,
       'imageTwo': imageTwo,
       'imageThree': imageThree,
+      'college': college,
     }.withoutNulls,
   );
 
@@ -192,7 +200,8 @@ class ListingsRecordDocumentEquality implements Equality<ListingsRecord> {
         e1?.phoneNumber == e2?.phoneNumber &&
         e1?.imageOne == e2?.imageOne &&
         e1?.imageTwo == e2?.imageTwo &&
-        e1?.imageThree == e2?.imageThree;
+        e1?.imageThree == e2?.imageThree &&
+        e1?.college == e2?.college;
   }
 
   @override
@@ -210,7 +219,8 @@ class ListingsRecordDocumentEquality implements Equality<ListingsRecord> {
         e?.phoneNumber,
         e?.imageOne,
         e?.imageTwo,
-        e?.imageThree
+        e?.imageThree,
+        e?.college
       ]);
 
   @override

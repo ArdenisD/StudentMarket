@@ -57,10 +57,9 @@ class _CreateListingWidgetState extends State<CreateListingWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: double.infinity,
-      height: double.infinity,
+      width: 400.0,
       decoration: BoxDecoration(
-        color: FlutterFlowTheme.of(context).secondaryBackground,
+        color: Colors.white,
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(24.0),
           topRight: Radius.circular(24.0),
@@ -742,7 +741,8 @@ class _CreateListingWidgetState extends State<CreateListingWidget> {
                 'Entertainment',
                 'Kitchen usage',
                 'Services',
-                'Housing'
+                'Housing',
+                'Car Rides'
               ],
               onChanged: (val) =>
                   safeSetState(() => _model.categoryValue = val),
@@ -793,7 +793,10 @@ class _CreateListingWidgetState extends State<CreateListingWidget> {
                     imageOne: _model.uploadedFileUrl_uploadImage1,
                     imageTwo: _model.uploadedFileUrl_uploadImage2,
                     imageThree: _model.uploadedFileUrl_uploadImage3,
-                    displayName: currentUserDisplayName,
+                    displayName:
+                        valueOrDefault(currentUserDocument?.userName, ''),
+                    college:
+                        valueOrDefault(currentUserDocument?.univsersity, ''),
                   ),
                   ...mapToFirestore(
                     {

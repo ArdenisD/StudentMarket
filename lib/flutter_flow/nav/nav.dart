@@ -94,19 +94,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
           builder: (context, params) => ForgotPasswordWidget(),
         ),
         FFRoute(
-          name: ListingDetailsWidget.routeName,
-          path: ListingDetailsWidget.routePath,
-          asyncParams: {
-            'listingDoc': getDoc(['listings'], ListingsRecord.fromSnapshot),
-          },
-          builder: (context, params) => ListingDetailsWidget(
-            listingDoc: params.getParam(
-              'listingDoc',
-              ParamType.Document,
-            ),
-          ),
-        ),
-        FFRoute(
           name: LoginWidget.routeName,
           path: LoginWidget.routePath,
           builder: (context, params) => LoginWidget(),
@@ -115,11 +102,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
           name: ProfileWidget.routeName,
           path: ProfileWidget.routePath,
           builder: (context, params) => ProfileWidget(),
-        ),
-        FFRoute(
-          name: SearchHomeWidget.routeName,
-          path: SearchHomeWidget.routePath,
-          builder: (context, params) => SearchHomeWidget(),
         ),
         FFRoute(
           name: ChatScreenWidget.routeName,
@@ -143,6 +125,24 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
           name: MessagesListWidget.routeName,
           path: MessagesListWidget.routePath,
           builder: (context, params) => MessagesListWidget(),
+        ),
+        FFRoute(
+          name: ListingDetailsWidget.routeName,
+          path: ListingDetailsWidget.routePath,
+          asyncParams: {
+            'listingDoc': getDoc(['listings'], ListingsRecord.fromSnapshot),
+          },
+          builder: (context, params) => ListingDetailsWidget(
+            listingDoc: params.getParam(
+              'listingDoc',
+              ParamType.Document,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: SearchHomeWidget.routeName,
+          path: SearchHomeWidget.routePath,
+          builder: (context, params) => SearchHomeWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
