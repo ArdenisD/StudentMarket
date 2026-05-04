@@ -65,6 +65,10 @@ class _ListingPreviewWidgetState extends State<ListingPreviewWidget> {
                 widget.listingDoc,
                 ParamType.Document,
               ),
+              'listingRef': serializeParam(
+                widget.listingDoc?.reference,
+                ParamType.DocumentReference,
+              ),
             }.withoutNulls,
             extra: <String, dynamic>{
               'listingDoc': widget.listingDoc,
@@ -74,13 +78,17 @@ class _ListingPreviewWidgetState extends State<ListingPreviewWidget> {
         child: Container(
           width: double.infinity,
           height: 145.0,
+          constraints: BoxConstraints(
+            maxWidth: 400.0,
+            maxHeight: 900.0,
+          ),
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).secondary,
-            borderRadius: BorderRadius.circular(15.0),
+            borderRadius: BorderRadius.circular(24.0),
             shape: BoxShape.rectangle,
             border: Border.all(
               color: Colors.black,
-              width: 1.0,
+              width: 2.0,
             ),
           ),
           child: Padding(
@@ -95,8 +103,8 @@ class _ListingPreviewWidgetState extends State<ListingPreviewWidget> {
                       widget.listingDoc?.imageOne,
                       'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/student-market-q1ib93/assets/jtf6v09c7v12/empty.jpg',
                     ),
-                    width: 100.0,
-                    height: 100.0,
+                    width: 90.0,
+                    height: 90.0,
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -105,17 +113,15 @@ class _ListingPreviewWidgetState extends State<ListingPreviewWidget> {
                     widget.listingDoc?.title,
                     'listing title',
                   ),
+                  textAlign: TextAlign.center,
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                         font: GoogleFonts.inter(
-                          fontWeight: FlutterFlowTheme.of(context)
-                              .bodyMedium
-                              .fontWeight,
+                          fontWeight: FontWeight.bold,
                           fontStyle:
                               FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                         ),
                         letterSpacing: 0.0,
-                        fontWeight:
-                            FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                        fontWeight: FontWeight.bold,
                         fontStyle:
                             FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                       ),
@@ -125,17 +131,15 @@ class _ListingPreviewWidgetState extends State<ListingPreviewWidget> {
                     widget.listingDoc?.price,
                     'listing price',
                   ),
+                  textAlign: TextAlign.center,
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                         font: GoogleFonts.inter(
-                          fontWeight: FlutterFlowTheme.of(context)
-                              .bodyMedium
-                              .fontWeight,
+                          fontWeight: FontWeight.bold,
                           fontStyle:
                               FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                         ),
                         letterSpacing: 0.0,
-                        fontWeight:
-                            FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                        fontWeight: FontWeight.bold,
                         fontStyle:
                             FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                       ),

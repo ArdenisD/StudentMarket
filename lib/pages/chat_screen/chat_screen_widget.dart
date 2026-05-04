@@ -3,6 +3,8 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import '/pages/rating_screen/rating_screen_widget.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
@@ -17,11 +19,17 @@ class ChatScreenWidget extends StatefulWidget {
     required this.otherUserUid,
     required this.otherUserName,
     required this.otherUserPhoto,
+    required this.sellerRatingAvg,
+    required this.sellerRatingNum,
+    required this.listingRef,
   });
 
   final String? otherUserUid;
   final String? otherUserName;
   final String? otherUserPhoto;
+  final double? sellerRatingAvg;
+  final int? sellerRatingNum;
+  final DocumentReference? listingRef;
 
   static String routeName = 'chatScreen';
   static String routePath = '/chatScreen';
@@ -116,8 +124,15 @@ class _ChatScreenWidgetState extends State<ChatScreenWidget> {
             child: Container(
               constraints: BoxConstraints(
                 maxWidth: 400.0,
+                maxHeight: 900.0,
               ),
-              decoration: BoxDecoration(),
+              decoration: BoxDecoration(
+                color: FlutterFlowTheme.of(context).primaryBackground,
+                border: Border.all(
+                  color: FlutterFlowTheme.of(context).primaryText,
+                  width: 4.0,
+                ),
+              ),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -126,8 +141,12 @@ class _ChatScreenWidgetState extends State<ChatScreenWidget> {
                     padding: EdgeInsets.all(20.0),
                     child: Container(
                       decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).secondaryText,
-                        borderRadius: BorderRadius.circular(20.0),
+                        color: FlutterFlowTheme.of(context).secondary,
+                        borderRadius: BorderRadius.circular(24.0),
+                        border: Border.all(
+                          color: FlutterFlowTheme.of(context).primaryText,
+                          width: 2.0,
+                        ),
                       ),
                       child: Padding(
                         padding: EdgeInsets.all(12.0),
@@ -135,49 +154,35 @@ class _ChatScreenWidgetState extends State<ChatScreenWidget> {
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  20.0, 0.0, 0.0, 0.0),
-                              child: FlutterFlowIconButton(
-                                borderRadius: 24.0,
-                                buttonSize: 40.0,
-                                fillColor: FlutterFlowTheme.of(context).primary,
-                                icon: Icon(
-                                  Icons.arrow_back,
-                                  color: Colors.white,
-                                  size: 24.0,
-                                ),
-                                onPressed: () async {
-                                  logFirebaseEvent(
-                                      'CHAT_SCREEN_PAGE_arrow_back_ICN_ON_TAP');
-                                  logFirebaseEvent('IconButton_navigate_back');
-                                  context.safePop();
-                                },
+                            FlutterFlowIconButton(
+                              borderColor:
+                                  FlutterFlowTheme.of(context).primaryText,
+                              borderRadius: 24.0,
+                              borderWidth: 2.0,
+                              buttonSize: 40.0,
+                              fillColor: FlutterFlowTheme.of(context).primary,
+                              icon: Icon(
+                                Icons.arrow_back,
+                                color: FlutterFlowTheme.of(context).primaryText,
+                                size: 24.0,
                               ),
+                              onPressed: () async {
+                                logFirebaseEvent(
+                                    'CHAT_SCREEN_PAGE_arrow_back_ICN_ON_TAP');
+                                logFirebaseEvent('IconButton_navigate_back');
+                                context.safePop();
+                              },
                             ),
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  20.0, 0.0, 0.0, 0.0),
-                              child: Text(
-                                valueOrDefault<String>(
-                                  widget.otherUserName,
-                                  'User Name',
-                                ),
-                                textAlign: TextAlign.start,
-                                style: FlutterFlowTheme.of(context)
-                                    .titleLarge
-                                    .override(
-                                      font: GoogleFonts.interTight(
-                                        fontWeight: FlutterFlowTheme.of(context)
-                                            .titleLarge
-                                            .fontWeight,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .titleLarge
-                                            .fontStyle,
-                                      ),
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondary,
-                                      letterSpacing: 0.0,
+                            Text(
+                              valueOrDefault<String>(
+                                widget.otherUserName,
+                                'User Name',
+                              ),
+                              textAlign: TextAlign.start,
+                              style: FlutterFlowTheme.of(context)
+                                  .titleLarge
+                                  .override(
+                                    font: GoogleFonts.interTight(
                                       fontWeight: FlutterFlowTheme.of(context)
                                           .titleLarge
                                           .fontWeight,
@@ -185,9 +190,79 @@ class _ChatScreenWidgetState extends State<ChatScreenWidget> {
                                           .titleLarge
                                           .fontStyle,
                                     ),
-                              ),
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                    fontSize: 14.0,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .titleLarge
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .titleLarge
+                                        .fontStyle,
+                                  ),
                             ),
-                          ],
+                            Text(
+                              'Rating(avg/num):',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    font: GoogleFonts.inter(
+                                      fontWeight: FontWeight.w600,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontStyle,
+                                    ),
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w600,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontStyle,
+                                  ),
+                            ),
+                            Text(
+                              valueOrDefault<String>(
+                                widget.sellerRatingAvg?.toString(),
+                                '0.0',
+                              ),
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    font: GoogleFonts.inter(
+                                      fontWeight: FontWeight.w600,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontStyle,
+                                    ),
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w600,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontStyle,
+                                  ),
+                            ),
+                            Text(
+                              valueOrDefault<String>(
+                                widget.sellerRatingNum?.toString(),
+                                '0',
+                              ),
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    font: GoogleFonts.inter(
+                                      fontWeight: FontWeight.w600,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontStyle,
+                                    ),
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w600,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontStyle,
+                                  ),
+                            ),
+                          ].divide(SizedBox(width: 5.0)),
                         ),
                       ),
                     ),
@@ -198,8 +273,7 @@ class _ChatScreenWidgetState extends State<ChatScreenWidget> {
                           20.0, 40.0, 20.0, 40.0),
                       child: Container(
                         decoration: BoxDecoration(
-                          color:
-                              FlutterFlowTheme.of(context).secondaryBackground,
+                          color: FlutterFlowTheme.of(context).primaryBackground,
                           borderRadius: BorderRadius.circular(0.0),
                         ),
                         child: StreamBuilder<List<MessagesRecord>>(
@@ -250,7 +324,7 @@ class _ChatScreenWidgetState extends State<ChatScreenWidget> {
                                       border: Border.all(
                                         color: FlutterFlowTheme.of(context)
                                             .primaryText,
-                                        width: 3.0,
+                                        width: 2.0,
                                       ),
                                     ),
                                     alignment: AlignmentDirectional(-1.0, 0.0),
@@ -266,11 +340,7 @@ class _ChatScreenWidgetState extends State<ChatScreenWidget> {
                                               .bodyMedium
                                               .override(
                                                 font: GoogleFonts.inter(
-                                                  fontWeight:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMedium
-                                                          .fontWeight,
+                                                  fontWeight: FontWeight.bold,
                                                   fontStyle:
                                                       FlutterFlowTheme.of(
                                                               context)
@@ -281,10 +351,7 @@ class _ChatScreenWidgetState extends State<ChatScreenWidget> {
                                                     FlutterFlowTheme.of(context)
                                                         .primaryText,
                                                 letterSpacing: 0.0,
-                                                fontWeight:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .fontWeight,
+                                                fontWeight: FontWeight.bold,
                                                 fontStyle:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyMedium
@@ -306,8 +373,12 @@ class _ChatScreenWidgetState extends State<ChatScreenWidget> {
                     padding: EdgeInsets.all(20.0),
                     child: Container(
                       decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).secondaryText,
-                        borderRadius: BorderRadius.circular(20.0),
+                        color: FlutterFlowTheme.of(context).secondary,
+                        borderRadius: BorderRadius.circular(24.0),
+                        border: Border.all(
+                          color: FlutterFlowTheme.of(context).primaryText,
+                          width: 2.0,
+                        ),
                       ),
                       child: Padding(
                         padding: EdgeInsets.all(12.0),
@@ -369,29 +440,30 @@ class _ChatScreenWidgetState extends State<ChatScreenWidget> {
                                       ),
                                   enabledBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
-                                      color: Color(0x00000000),
-                                      width: 1.0,
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                      width: 2.0,
                                     ),
                                     borderRadius: BorderRadius.circular(24.0),
                                   ),
                                   focusedBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                       color: Color(0x00000000),
-                                      width: 1.0,
+                                      width: 2.0,
                                     ),
                                     borderRadius: BorderRadius.circular(24.0),
                                   ),
                                   errorBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                       color: FlutterFlowTheme.of(context).error,
-                                      width: 1.0,
+                                      width: 2.0,
                                     ),
                                     borderRadius: BorderRadius.circular(24.0),
                                   ),
                                   focusedErrorBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                       color: FlutterFlowTheme.of(context).error,
-                                      width: 1.0,
+                                      width: 2.0,
                                     ),
                                     borderRadius: BorderRadius.circular(24.0),
                                   ),
@@ -430,12 +502,16 @@ class _ChatScreenWidgetState extends State<ChatScreenWidget> {
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   12.0, 0.0, 0.0, 0.0),
                               child: FlutterFlowIconButton(
+                                borderColor:
+                                    FlutterFlowTheme.of(context).primaryText,
                                 borderRadius: 24.0,
+                                borderWidth: 2.0,
                                 buttonSize: 40.0,
                                 fillColor: FlutterFlowTheme.of(context).primary,
                                 icon: Icon(
                                   Icons.send,
-                                  color: FlutterFlowTheme.of(context).info,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
                                   size: 24.0,
                                 ),
                                 onPressed: () async {
@@ -477,6 +553,74 @@ class _ChatScreenWidgetState extends State<ChatScreenWidget> {
                             ),
                           ],
                         ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
+                    child: FFButtonWidget(
+                      onPressed: () async {
+                        logFirebaseEvent(
+                            'CHAT_SCREEN_COMPLETE_TRANSACTION_AND_RAT');
+                        logFirebaseEvent('Button_bottom_sheet');
+                        await showModalBottomSheet(
+                          isScrollControlled: true,
+                          backgroundColor: Colors.transparent,
+                          enableDrag: false,
+                          context: context,
+                          builder: (context) {
+                            return GestureDetector(
+                              onTap: () {
+                                FocusScope.of(context).unfocus();
+                                FocusManager.instance.primaryFocus?.unfocus();
+                              },
+                              child: Padding(
+                                padding: MediaQuery.viewInsetsOf(context),
+                                child: RatingScreenWidget(
+                                  otherUserUid: widget.otherUserUid!,
+                                  listingRef: widget.listingRef!,
+                                ),
+                              ),
+                            );
+                          },
+                        ).then((value) => safeSetState(() {}));
+                      },
+                      text: 'Complete Transaction and Rate User',
+                      options: FFButtonOptions(
+                        width: 300.0,
+                        height: 38.0,
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            16.0, 0.0, 16.0, 0.0),
+                        iconPadding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        color: FlutterFlowTheme.of(context).primary,
+                        textStyle: FlutterFlowTheme.of(context)
+                            .titleSmall
+                            .override(
+                              font: GoogleFonts.interTight(
+                                fontWeight: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .fontWeight,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .fontStyle,
+                              ),
+                              color: FlutterFlowTheme.of(context).primaryText,
+                              letterSpacing: 0.0,
+                              fontWeight: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .fontWeight,
+                              fontStyle: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .fontStyle,
+                            ),
+                        elevation: 0.0,
+                        borderSide: BorderSide(
+                          color: FlutterFlowTheme.of(context).primaryText,
+                          width: 2.0,
+                        ),
+                        borderRadius: BorderRadius.circular(24.0),
                       ),
                     ),
                   ),

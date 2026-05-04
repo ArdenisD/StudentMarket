@@ -47,5 +47,12 @@ service cloud.firestore {
       allow read: if true;
     }
 
+
+    match /userRatings/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
   }
 }

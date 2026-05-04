@@ -47,7 +47,7 @@ class AiPricingCall {
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'aiPricing',
-      apiUrl: 'AIzaSyDMyxApBPNDI0k88o666FcEo2UEhniTQRs',
+      apiUrl: 'https://myai-4zjpx7ubfa-uc.a.run.app',
       callType: ApiCallType.POST,
       headers: {},
       params: {},

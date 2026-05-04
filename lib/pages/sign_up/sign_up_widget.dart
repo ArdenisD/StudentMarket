@@ -67,6 +67,10 @@ class _SignUpWidgetState extends State<SignUpWidget> {
       alignment: AlignmentDirectional(0.0, 0.0),
       child: Container(
         width: 350.0,
+        constraints: BoxConstraints(
+          maxWidth: 400.0,
+          maxHeight: 900.0,
+        ),
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).primaryBackground,
         ),
@@ -195,7 +199,10 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                           Align(
                             alignment: AlignmentDirectional(1.0, 1.0),
                             child: FlutterFlowIconButton(
+                              borderColor:
+                                  FlutterFlowTheme.of(context).primaryText,
                               borderRadius: 24.0,
+                              borderWidth: 2.0,
                               buttonSize: 40.0,
                               fillColor: Color(0xFFA8C5A0),
                               icon: Icon(
@@ -207,12 +214,11 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                 logFirebaseEvent('SIGN_UP_COMP_add_ICN_ON_TAP');
                                 logFirebaseEvent(
                                     'IconButton_upload_media_to_firebase');
-                                final selectedMedia =
-                                    await selectMediaWithSourceBottomSheet(
-                                  context: context,
+                                final selectedMedia = await selectMedia(
                                   maxWidth: 200.00,
                                   maxHeight: 200.00,
-                                  allowPhoto: true,
+                                  mediaSource: MediaSource.photoGallery,
+                                  multiImage: false,
                                 );
                                 if (selectedMedia != null &&
                                     selectedMedia.every((m) =>

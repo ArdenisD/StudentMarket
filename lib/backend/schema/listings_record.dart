@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import '/backend/algolia/serialization_util.dart';
+import '/backend/algolia/algolia_manager.dart';
 import 'package:collection/collection.dart';
 
 import '/backend/schema/util/firestore_util.dart';
@@ -90,6 +92,21 @@ class ListingsRecord extends FirestoreRecord {
   String get college => _college ?? '';
   bool hasCollege() => _college != null;
 
+  // "avgRating" field.
+  double? _avgRating;
+  double get avgRating => _avgRating ?? 0.0;
+  bool hasAvgRating() => _avgRating != null;
+
+  // "numRating" field.
+  int? _numRating;
+  int get numRating => _numRating ?? 0;
+  bool hasNumRating() => _numRating != null;
+
+  // "status" field.
+  String? _status;
+  String get status => _status ?? '';
+  bool hasStatus() => _status != null;
+
   void _initializeFields() {
     _title = snapshotData['title'] as String?;
     _description = snapshotData['description'] as String?;
@@ -106,6 +123,9 @@ class ListingsRecord extends FirestoreRecord {
     _imageTwo = snapshotData['imageTwo'] as String?;
     _imageThree = snapshotData['imageThree'] as String?;
     _college = snapshotData['college'] as String?;
+    _avgRating = castToType<double>(snapshotData['avgRating']);
+    _numRating = castToType<int>(snapshotData['numRating']);
+    _status = snapshotData['status'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -128,6 +148,65 @@ class ListingsRecord extends FirestoreRecord {
     DocumentReference reference,
   ) =>
       ListingsRecord._(reference, mapFromFirestore(data));
+
+  static ListingsRecord fromAlgolia(AlgoliaObjectSnapshot snapshot) =>
+      ListingsRecord.getDocumentFromData(
+        {
+          'title': snapshot.data['title'],
+          'description': snapshot.data['description'],
+          'category': snapshot.data['category'],
+          'created_at': convertAlgoliaParam(
+            snapshot.data['created_at'],
+            ParamType.DateTime,
+            false,
+          ),
+          'price': snapshot.data['price'],
+          'uid': snapshot.data['uid'],
+          'email': snapshot.data['email'],
+          'display_name': snapshot.data['display_name'],
+          'photo_url': snapshot.data['photo_url'],
+          'created_time': convertAlgoliaParam(
+            snapshot.data['created_time'],
+            ParamType.DateTime,
+            false,
+          ),
+          'phone_number': snapshot.data['phone_number'],
+          'imageOne': snapshot.data['imageOne'],
+          'imageTwo': snapshot.data['imageTwo'],
+          'imageThree': snapshot.data['imageThree'],
+          'college': snapshot.data['college'],
+          'avgRating': convertAlgoliaParam(
+            snapshot.data['avgRating'],
+            ParamType.double,
+            false,
+          ),
+          'numRating': convertAlgoliaParam(
+            snapshot.data['numRating'],
+            ParamType.int,
+            false,
+          ),
+          'status': snapshot.data['status'],
+        },
+        ListingsRecord.collection.doc(snapshot.objectID),
+      );
+
+  static Future<List<ListingsRecord>> search({
+    String? term,
+    FutureOr<LatLng>? location,
+    int? maxResults,
+    double? searchRadiusMeters,
+    bool useCache = false,
+  }) =>
+      FFAlgoliaManager.instance
+          .algoliaQuery(
+            index: 'listings',
+            term: term,
+            maxResults: maxResults,
+            location: location,
+            searchRadiusMeters: searchRadiusMeters,
+            useCache: useCache,
+          )
+          .then((r) => r.map(fromAlgolia).toList());
 
   @override
   String toString() =>
@@ -158,6 +237,9 @@ Map<String, dynamic> createListingsRecordData({
   String? imageTwo,
   String? imageThree,
   String? college,
+  double? avgRating,
+  int? numRating,
+  String? status,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -176,6 +258,9 @@ Map<String, dynamic> createListingsRecordData({
       'imageTwo': imageTwo,
       'imageThree': imageThree,
       'college': college,
+      'avgRating': avgRating,
+      'numRating': numRating,
+      'status': status,
     }.withoutNulls,
   );
 
@@ -201,7 +286,10 @@ class ListingsRecordDocumentEquality implements Equality<ListingsRecord> {
         e1?.imageOne == e2?.imageOne &&
         e1?.imageTwo == e2?.imageTwo &&
         e1?.imageThree == e2?.imageThree &&
-        e1?.college == e2?.college;
+        e1?.college == e2?.college &&
+        e1?.avgRating == e2?.avgRating &&
+        e1?.numRating == e2?.numRating &&
+        e1?.status == e2?.status;
   }
 
   @override
@@ -220,7 +308,10 @@ class ListingsRecordDocumentEquality implements Equality<ListingsRecord> {
         e?.imageOne,
         e?.imageTwo,
         e?.imageThree,
-        e?.college
+        e?.college,
+        e?.avgRating,
+        e?.numRating,
+        e?.status
       ]);
 
   @override

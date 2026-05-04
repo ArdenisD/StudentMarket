@@ -15,7 +15,7 @@ class AiPricingModel extends FlutterFlowModel<AiPricingWidget> {
   TextEditingController? textController;
   String? Function(BuildContext, String?)? textControllerValidator;
   // Stores action output result for [Backend Call - API (aiPricing)] action in Button widget.
-  ApiCallResponse? apiResultr0q;
+  ApiCallResponse? apiResult98o;
 
   @override
   void initState(BuildContext context) {}

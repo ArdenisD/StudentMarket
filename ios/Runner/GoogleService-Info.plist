@@ -26,5 +26,7 @@
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
 	<string>1:248213702035:ios:2ff8933a8ef940a0b85466</string>
+	<key>DATABASE_URL</key>
+	<string>https://student-market-q1ib93-default-rtdb.firebaseio.com</string>
 </dict>
 </plist>

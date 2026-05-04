@@ -59,8 +59,12 @@ class _EditProfileInfoWidgetState extends State<EditProfileInfoWidget> {
     return Align(
       alignment: AlignmentDirectional(0.0, 0.0),
       child: Container(
-        width: 350.0,
+        width: 400.0,
         height: 800.0,
+        constraints: BoxConstraints(
+          maxWidth: 400.0,
+          maxHeight: 900.0,
+        ),
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).primaryBackground,
         ),
@@ -78,9 +82,10 @@ class _EditProfileInfoWidgetState extends State<EditProfileInfoWidget> {
                   children: [
                     FlutterFlowIconButton(
                       borderColor: FlutterFlowTheme.of(context).primaryText,
-                      borderRadius: 8.0,
+                      borderRadius: 24.0,
+                      borderWidth: 2.0,
                       buttonSize: 40.0,
-                      fillColor: FlutterFlowTheme.of(context).primary,
+                      fillColor: FlutterFlowTheme.of(context).secondary,
                       icon: Icon(
                         Icons.cancel_outlined,
                         color: FlutterFlowTheme.of(context).primaryText,

@@ -1,5 +1,6 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/flutter_flow/flutter_flow_ad_banner.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -63,9 +64,6 @@ class _SearchHomeWidgetState extends State<SearchHomeWidget> {
       }
     });
 
-    _model.textController ??= TextEditingController();
-    _model.textFieldFocusNode ??= FocusNode();
-
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
@@ -87,17 +85,26 @@ class _SearchHomeWidgetState extends State<SearchHomeWidget> {
       },
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: Color(0xFFF1F4F8),
+        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         body: SafeArea(
           top: true,
           child: Align(
             alignment: AlignmentDirectional(0.0, 0.0),
             child: Container(
-              width: 300.0,
-              decoration: BoxDecoration(),
+              constraints: BoxConstraints(
+                maxWidth: 400.0,
+                maxHeight: 900.0,
+              ),
+              decoration: BoxDecoration(
+                color: FlutterFlowTheme.of(context).primaryBackground,
+                border: Border.all(
+                  color: FlutterFlowTheme.of(context).primaryText,
+                  width: 4.0,
+                ),
+              ),
               alignment: AlignmentDirectional(0.0, 0.0),
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 20.0),
+                padding: EdgeInsetsDirectional.fromSTEB(25.0, 0.0, 25.0, 0.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
@@ -172,6 +179,7 @@ class _SearchHomeWidgetState extends State<SearchHomeWidget> {
                                 borderSide: BorderSide(
                                   color:
                                       FlutterFlowTheme.of(context).primaryText,
+                                  width: 2.0,
                                 ),
                                 borderRadius: BorderRadius.circular(24.0),
                               ),
@@ -217,6 +225,7 @@ class _SearchHomeWidgetState extends State<SearchHomeWidget> {
                                 borderSide: BorderSide(
                                   color:
                                       FlutterFlowTheme.of(context).primaryText,
+                                  width: 2.0,
                                 ),
                                 borderRadius: BorderRadius.circular(24.0),
                               ),
@@ -262,6 +271,7 @@ class _SearchHomeWidgetState extends State<SearchHomeWidget> {
                                 borderSide: BorderSide(
                                   color:
                                       FlutterFlowTheme.of(context).primaryText,
+                                  width: 2.0,
                                 ),
                                 borderRadius: BorderRadius.circular(24.0),
                               ),
@@ -283,110 +293,6 @@ class _SearchHomeWidgetState extends State<SearchHomeWidget> {
                           ),
                         ),
                       ],
-                    ),
-                    Container(
-                      width: double.infinity,
-                      child: TextFormField(
-                        controller: _model.textController,
-                        focusNode: _model.textFieldFocusNode,
-                        autofocus: false,
-                        enabled: true,
-                        obscureText: false,
-                        decoration: InputDecoration(
-                          isDense: true,
-                          labelStyle:
-                              FlutterFlowTheme.of(context).labelMedium.override(
-                                    font: GoogleFonts.inter(
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .labelMedium
-                                          .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .labelMedium
-                                          .fontStyle,
-                                    ),
-                                    letterSpacing: 0.0,
-                                    fontWeight: FlutterFlowTheme.of(context)
-                                        .labelMedium
-                                        .fontWeight,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .labelMedium
-                                        .fontStyle,
-                                  ),
-                          hintText:
-                              'Search for items/services... (setup later)',
-                          hintStyle:
-                              FlutterFlowTheme.of(context).labelMedium.override(
-                                    font: GoogleFonts.inter(
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .labelMedium
-                                          .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .labelMedium
-                                          .fontStyle,
-                                    ),
-                                    letterSpacing: 0.0,
-                                    fontWeight: FlutterFlowTheme.of(context)
-                                        .labelMedium
-                                        .fontWeight,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .labelMedium
-                                        .fontStyle,
-                                  ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: FlutterFlowTheme.of(context).primaryText,
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(24.0),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Color(0x00000000),
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(24.0),
-                          ),
-                          errorBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: FlutterFlowTheme.of(context).error,
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(24.0),
-                          ),
-                          focusedErrorBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: FlutterFlowTheme.of(context).error,
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(24.0),
-                          ),
-                          filled: true,
-                          fillColor: FlutterFlowTheme.of(context).secondary,
-                        ),
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              font: GoogleFonts.inter(
-                                fontWeight: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .fontWeight,
-                                fontStyle: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .fontStyle,
-                              ),
-                              color: FlutterFlowTheme.of(context).primaryText,
-                              letterSpacing: 0.0,
-                              fontWeight: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .fontWeight,
-                              fontStyle: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .fontStyle,
-                            ),
-                        textAlign: TextAlign.start,
-                        cursorColor: FlutterFlowTheme.of(context).primaryText,
-                        enableInteractiveSelection: true,
-                        validator:
-                            _model.textControllerValidator.asValidator(context),
-                      ),
                     ),
                     FlutterFlowDropDown<String>(
                       key: ValueKey('DropDown_srl6'),
@@ -426,17 +332,13 @@ class _SearchHomeWidgetState extends State<SearchHomeWidget> {
                       textStyle:
                           FlutterFlowTheme.of(context).bodyMedium.override(
                                 font: GoogleFonts.inter(
-                                  fontWeight: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .fontWeight,
+                                  fontWeight: FontWeight.bold,
                                   fontStyle: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .fontStyle,
                                 ),
                                 letterSpacing: 0.0,
-                                fontWeight: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .fontWeight,
+                                fontWeight: FontWeight.bold,
                                 fontStyle: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .fontStyle,
@@ -450,8 +352,8 @@ class _SearchHomeWidgetState extends State<SearchHomeWidget> {
                       fillColor: FlutterFlowTheme.of(context).secondary,
                       elevation: 2.0,
                       borderColor: FlutterFlowTheme.of(context).primaryText,
-                      borderWidth: 0.0,
-                      borderRadius: 8.0,
+                      borderWidth: 2.0,
+                      borderRadius: 24.0,
                       margin:
                           EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 0.0),
                       hidesUnderline: true,
@@ -468,11 +370,18 @@ class _SearchHomeWidgetState extends State<SearchHomeWidget> {
                                   StreamBuilder<List<ListingsRecord>>(
                                 stream: queryListingsRecord(
                                   queryBuilder: (listingsRecord) =>
-                                      listingsRecord.where(
-                                    'college',
-                                    isEqualTo: valueOrDefault(
-                                        currentUserDocument?.univsersity, ''),
-                                  ),
+                                      listingsRecord
+                                          .where(
+                                            'college',
+                                            isEqualTo: valueOrDefault(
+                                                currentUserDocument
+                                                    ?.univsersity,
+                                                ''),
+                                          )
+                                          .where(
+                                            'status',
+                                            isEqualTo: 'available',
+                                          ),
                                 ),
                                 builder: (context, snapshot) {
                                   // Customize what your widget looks like when it's loading.
@@ -551,6 +460,10 @@ class _SearchHomeWidgetState extends State<SearchHomeWidget> {
                                                 currentUserDocument
                                                     ?.univsersity,
                                                 ''),
+                                          )
+                                          .where(
+                                            'status',
+                                            isEqualTo: 'available',
                                           ),
                                 ),
                                 builder: (context, snapshot) {
@@ -571,97 +484,38 @@ class _SearchHomeWidgetState extends State<SearchHomeWidget> {
                                     );
                                   }
                                   List<ListingsRecord>
-                                      listViewListingsRecordList =
+                                      gridViewListingsRecordList =
                                       snapshot.data!;
 
-                                  return ListView.separated(
+                                  return GridView.builder(
                                     padding: EdgeInsets.zero,
+                                    gridDelegate:
+                                        SliverGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisCount: 2,
+                                      crossAxisSpacing: 10.0,
+                                      mainAxisSpacing: 10.0,
+                                      childAspectRatio: 1.0,
+                                    ),
                                     scrollDirection: Axis.vertical,
                                     itemCount:
-                                        listViewListingsRecordList.length,
-                                    separatorBuilder: (_, __) =>
-                                        SizedBox(height: 12.0),
-                                    itemBuilder: (context, listViewIndex) {
-                                      final listViewListingsRecord =
-                                          listViewListingsRecordList[
-                                              listViewIndex];
+                                        gridViewListingsRecordList.length,
+                                    itemBuilder: (context, gridViewIndex) {
+                                      final gridViewListingsRecord =
+                                          gridViewListingsRecordList[
+                                              gridViewIndex];
                                       return wrapWithModel(
                                         model: _model.listingPreviewModels2
                                             .getModel(
-                                          listViewListingsRecord.reference.id,
-                                          listViewIndex,
+                                          gridViewListingsRecord.reference.id,
+                                          gridViewIndex,
                                         ),
                                         updateCallback: () =>
                                             safeSetState(() {}),
                                         child: ListingPreviewWidget(
                                           key: Key(
-                                            'Keyias_${listViewListingsRecord.reference.id}',
+                                            'Keyjpf_${gridViewListingsRecord.reference.id}',
                                           ),
-                                          listingDoc: listViewListingsRecord,
-                                        ),
-                                      );
-                                    },
-                                  );
-                                },
-                              ),
-                            ),
-                          if (_model.selectedCategory == 'All')
-                            AuthUserStreamWidget(
-                              builder: (context) =>
-                                  StreamBuilder<List<ListingsRecord>>(
-                                stream: queryListingsRecord(
-                                  queryBuilder: (listingsRecord) =>
-                                      listingsRecord.where(
-                                    'college',
-                                    isEqualTo: valueOrDefault(
-                                        currentUserDocument?.univsersity, ''),
-                                  ),
-                                ),
-                                builder: (context, snapshot) {
-                                  // Customize what your widget looks like when it's loading.
-                                  if (!snapshot.hasData) {
-                                    return Center(
-                                      child: SizedBox(
-                                        width: 50.0,
-                                        height: 50.0,
-                                        child: CircularProgressIndicator(
-                                          valueColor:
-                                              AlwaysStoppedAnimation<Color>(
-                                            FlutterFlowTheme.of(context)
-                                                .primary,
-                                          ),
-                                        ),
-                                      ),
-                                    );
-                                  }
-                                  List<ListingsRecord>
-                                      listViewListingsRecordList =
-                                      snapshot.data!;
-
-                                  return ListView.separated(
-                                    padding: EdgeInsets.zero,
-                                    scrollDirection: Axis.vertical,
-                                    itemCount:
-                                        listViewListingsRecordList.length,
-                                    separatorBuilder: (_, __) =>
-                                        SizedBox(height: 12.0),
-                                    itemBuilder: (context, listViewIndex) {
-                                      final listViewListingsRecord =
-                                          listViewListingsRecordList[
-                                              listViewIndex];
-                                      return wrapWithModel(
-                                        model: _model.listingPreviewModels3
-                                            .getModel(
-                                          listViewListingsRecord.reference.id,
-                                          listViewIndex,
-                                        ),
-                                        updateCallback: () =>
-                                            safeSetState(() {}),
-                                        child: ListingPreviewWidget(
-                                          key: Key(
-                                            'Keyfe9_${listViewListingsRecord.reference.id}',
-                                          ),
-                                          listingDoc: listViewListingsRecord,
+                                          listingDoc: gridViewListingsRecord,
                                         ),
                                       );
                                     },
@@ -671,6 +525,12 @@ class _SearchHomeWidgetState extends State<SearchHomeWidget> {
                             ),
                         ],
                       ),
+                    ),
+                    FlutterFlowAdBanner(
+                      width: MediaQuery.sizeOf(context).width * 1.0,
+                      height: 50.0,
+                      showsTestAd: false,
+                      androidAdUnitID: 'ca-app-pub-3444066299148984/5248387045',
                     ),
                   ].divide(SizedBox(height: 20.0)),
                 ),

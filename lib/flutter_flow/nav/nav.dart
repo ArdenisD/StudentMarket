@@ -119,6 +119,20 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
               'otherUserPhoto',
               ParamType.String,
             ),
+            sellerRatingAvg: params.getParam(
+              'sellerRatingAvg',
+              ParamType.double,
+            ),
+            sellerRatingNum: params.getParam(
+              'sellerRatingNum',
+              ParamType.int,
+            ),
+            listingRef: params.getParam(
+              'listingRef',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['listings'],
+            ),
           ),
         ),
         FFRoute(
@@ -136,6 +150,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
             listingDoc: params.getParam(
               'listingDoc',
               ParamType.Document,
+            ),
+            listingRef: params.getParam(
+              'listingRef',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['listings'],
             ),
           ),
         ),

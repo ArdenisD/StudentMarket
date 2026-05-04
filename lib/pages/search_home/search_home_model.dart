@@ -12,10 +12,6 @@ class SearchHomeModel extends FlutterFlowModel<SearchHomeWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode;
-  TextEditingController? textController;
-  String? Function(BuildContext, String?)? textControllerValidator;
   // State field(s) for DropDown widget.
   String? dropDownValue;
   FormFieldController<String>? dropDownValueController;
@@ -23,8 +19,6 @@ class SearchHomeModel extends FlutterFlowModel<SearchHomeWidget> {
   late FlutterFlowDynamicModels<ListingPreviewModel> listingPreviewModels1;
   // Models for listingPreview dynamic component.
   late FlutterFlowDynamicModels<ListingPreviewModel> listingPreviewModels2;
-  // Models for listingPreview dynamic component.
-  late FlutterFlowDynamicModels<ListingPreviewModel> listingPreviewModels3;
 
   @override
   void initState(BuildContext context) {
@@ -32,17 +26,11 @@ class SearchHomeModel extends FlutterFlowModel<SearchHomeWidget> {
         FlutterFlowDynamicModels(() => ListingPreviewModel());
     listingPreviewModels2 =
         FlutterFlowDynamicModels(() => ListingPreviewModel());
-    listingPreviewModels3 =
-        FlutterFlowDynamicModels(() => ListingPreviewModel());
   }
 
   @override
   void dispose() {
-    textFieldFocusNode?.dispose();
-    textController?.dispose();
-
     listingPreviewModels1.dispose();
     listingPreviewModels2.dispose();
-    listingPreviewModels3.dispose();
   }
 }

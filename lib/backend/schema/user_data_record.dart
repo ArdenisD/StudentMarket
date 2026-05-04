@@ -70,6 +70,16 @@ class UserDataRecord extends FirestoreRecord {
   String get photoUrl => _photoUrl ?? '';
   bool hasPhotoUrl() => _photoUrl != null;
 
+  // "avgRating" field.
+  double? _avgRating;
+  double get avgRating => _avgRating ?? 0.0;
+  bool hasAvgRating() => _avgRating != null;
+
+  // "numRatings" field.
+  int? _numRatings;
+  int get numRatings => _numRatings ?? 0;
+  bool hasNumRatings() => _numRatings != null;
+
   void _initializeFields() {
     _email = snapshotData['email'] as String?;
     _createdTime = snapshotData['created_time'] as DateTime?;
@@ -82,6 +92,8 @@ class UserDataRecord extends FirestoreRecord {
     _uid = snapshotData['uid'] as String?;
     _phoneNumber = snapshotData['phone_number'] as String?;
     _photoUrl = snapshotData['photo_url'] as String?;
+    _avgRating = castToType<double>(snapshotData['avgRating']);
+    _numRatings = castToType<int>(snapshotData['numRatings']);
   }
 
   static CollectionReference get collection =>
@@ -130,6 +142,8 @@ Map<String, dynamic> createUserDataRecordData({
   String? uid,
   String? phoneNumber,
   String? photoUrl,
+  double? avgRating,
+  int? numRatings,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -144,6 +158,8 @@ Map<String, dynamic> createUserDataRecordData({
       'uid': uid,
       'phone_number': phoneNumber,
       'photo_url': photoUrl,
+      'avgRating': avgRating,
+      'numRatings': numRatings,
     }.withoutNulls,
   );
 
@@ -165,7 +181,9 @@ class UserDataRecordDocumentEquality implements Equality<UserDataRecord> {
         e1?.displayName == e2?.displayName &&
         e1?.uid == e2?.uid &&
         e1?.phoneNumber == e2?.phoneNumber &&
-        e1?.photoUrl == e2?.photoUrl;
+        e1?.photoUrl == e2?.photoUrl &&
+        e1?.avgRating == e2?.avgRating &&
+        e1?.numRatings == e2?.numRatings;
   }
 
   @override
@@ -180,7 +198,9 @@ class UserDataRecordDocumentEquality implements Equality<UserDataRecord> {
         e?.displayName,
         e?.uid,
         e?.phoneNumber,
-        e?.photoUrl
+        e?.photoUrl,
+        e?.avgRating,
+        e?.numRatings
       ]);
 
   @override

@@ -22,8 +22,6 @@ void main() async {
 
   setUpAll(() async {
     await initFirebase();
-
-    await FlutterFlowTheme.initialize();
   });
 
   setUp(() async {
@@ -45,7 +43,7 @@ void main() async {
     await tester.pumpAndSettle();
     await tester.tap(find.byKey(const ValueKey('listingPreview_z9e9')));
     await tester.pumpAndSettle();
-    expect(find.byKey(const ValueKey('Text_k2cl')), findsWidgets);
+    expect(find.byKey(const ValueKey('Container_pdda')), findsWidgets);
   });
 
   testWidgets('US2 Login', (WidgetTester tester) async {

@@ -56,9 +56,17 @@ class _MessagesListWidgetState extends State<MessagesListWidget> {
           child: Align(
             alignment: AlignmentDirectional(0.0, 0.0),
             child: Container(
-              width: 350.0,
+              width: 400.0,
+              constraints: BoxConstraints(
+                maxWidth: 400.0,
+                maxHeight: 900.0,
+              ),
               decoration: BoxDecoration(
-                color: FlutterFlowTheme.of(context).secondaryBackground,
+                color: FlutterFlowTheme.of(context).primaryBackground,
+                border: Border.all(
+                  color: FlutterFlowTheme.of(context).primaryText,
+                  width: 4.0,
+                ),
               ),
               alignment: AlignmentDirectional(0.0, 0.0),
               child: Padding(
@@ -78,10 +86,12 @@ class _MessagesListWidgetState extends State<MessagesListWidget> {
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 20.0, 0.0),
                             child: FlutterFlowIconButton(
-                              borderRadius: 8.0,
+                              borderColor:
+                                  FlutterFlowTheme.of(context).primaryText,
+                              borderRadius: 24.0,
+                              borderWidth: 2.0,
                               buttonSize: 40.0,
-                              fillColor:
-                                  FlutterFlowTheme.of(context).secondaryText,
+                              fillColor: FlutterFlowTheme.of(context).primary,
                               icon: Icon(
                                 Icons.arrow_back,
                                 color: FlutterFlowTheme.of(context).primaryText,
@@ -204,6 +214,18 @@ class _MessagesListWidgetState extends State<MessagesListWidget> {
                                               '',
                                               ParamType.String,
                                             ),
+                                            'sellerRatingAvg': serializeParam(
+                                              0.0,
+                                              ParamType.double,
+                                            ),
+                                            'sellerRatingNum': serializeParam(
+                                              0,
+                                              ParamType.int,
+                                            ),
+                                            'listingRef': serializeParam(
+                                              null,
+                                              ParamType.DocumentReference,
+                                            ),
                                           }.withoutNulls,
                                         );
                                       },
@@ -212,9 +234,14 @@ class _MessagesListWidgetState extends State<MessagesListWidget> {
                                         height: 100.0,
                                         decoration: BoxDecoration(
                                           color: FlutterFlowTheme.of(context)
-                                              .secondaryText,
+                                              .secondary,
                                           borderRadius:
                                               BorderRadius.circular(20.0),
+                                          border: Border.all(
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                            width: 2.0,
+                                          ),
                                         ),
                                         child: Padding(
                                           padding: EdgeInsets.all(10.0),
@@ -238,8 +265,7 @@ class _MessagesListWidgetState extends State<MessagesListWidget> {
                                                           font:
                                                               GoogleFonts.inter(
                                                             fontWeight:
-                                                                FontWeight
-                                                                    .normal,
+                                                                FontWeight.bold,
                                                             fontStyle:
                                                                 FlutterFlowTheme.of(
                                                                         context)
@@ -248,7 +274,7 @@ class _MessagesListWidgetState extends State<MessagesListWidget> {
                                                           ),
                                                           letterSpacing: 0.0,
                                                           fontWeight:
-                                                              FontWeight.normal,
+                                                              FontWeight.bold,
                                                           fontStyle:
                                                               FlutterFlowTheme.of(
                                                                       context)
@@ -322,10 +348,9 @@ class _MessagesListWidgetState extends State<MessagesListWidget> {
                                                                   font:
                                                                       GoogleFonts
                                                                           .inter(
-                                                                    fontWeight: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .fontWeight,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold,
                                                                     fontStyle: FlutterFlowTheme.of(
                                                                             context)
                                                                         .bodyMedium
@@ -333,10 +358,9 @@ class _MessagesListWidgetState extends State<MessagesListWidget> {
                                                                   ),
                                                                   letterSpacing:
                                                                       0.0,
-                                                                  fontWeight: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .fontWeight,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
                                                                   fontStyle: FlutterFlowTheme.of(
                                                                           context)
                                                                       .bodyMedium
